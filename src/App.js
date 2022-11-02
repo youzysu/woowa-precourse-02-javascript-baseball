@@ -11,14 +11,12 @@ class App {
   }
 
   createAnswer() {
-    const randomNumberList = [];
-    while (randomNumberList.length < NUMBER_DIGISTS) {
-      const randomNumber = MissionUtils.Random.pickNumberInRange(1, 9);
-      if (!randomNumberList.includes(randomNumber)) {
-        randomNumberList.push(randomNumber);
-      }
-    }
-    this.answer = Number(randomNumberList.join(""));
+    const randomUniqueNumberList = MissionUtils.Random.pickUniqueNumbersInRange(
+      1,
+      9,
+      3
+    );
+    this.answer = Number(randomUniqueNumberList.join(""));
     return this.answer;
   }
 }
