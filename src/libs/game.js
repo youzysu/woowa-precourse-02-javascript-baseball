@@ -7,9 +7,13 @@ const game = {
   },
 
   setAnswer: () => {
-    const numArr = Random.pickUniqueNumbersInRange(1, 9, 3);
+    const numberArr = [];
+    while (numberArr.length < 3) {
+      const number = Random.pickNumberInRange(1, 9);
+      if (!numberArr.includes(number)) numberArr.push(number);
+    }
 
-    return Number(numArr.join(""));
+    return Number(numberArr.join(""));
   },
 
   getAnswer: () => game.setAnswer(),

@@ -55,8 +55,8 @@
 - [x] test: 게임시작 문구 출력 함수를 위한 테스트 작성
 - [x] feat: 임의의 3자리 숫자를 선택하는 함수 만들기
   - **MissionUtils 라이브러리**에서 제공하는 `Random` API를 사용한다.
-- [ ] feat: MissionUtils 라이브러리의 다른 메서드로 임의의 3자리 숫자를 선택하기
-  - 추가된 요구 사항을 유심히 보면 사용된 라이브러리가 다른다.
+- [x] feat: MissionUtils 라이브러리의 다른 메서드로 임의의 3자리 숫자를 선택하기
+  - 추가된 요구 사항을 유심히 보면 사용된 메서드가 다르다.
   - 현재는 pickUniqueNumbersInRange()메서드를 사용한다.
   - 이를 pickNumberInRange()메서드로 바꾸어 다시 구현한다.
 - [x] test: 임의의 3자리 숫자 선택 함수를 위한 테스트 작성
