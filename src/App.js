@@ -51,6 +51,15 @@ class App {
   checkIncludesZero(string) {
     return String(string).includes("0");
   }
+
+  compareNumbers(answer, playerInputValue) {
+    if (answer === playerInputValue) return "3개의 숫자를 모두 맞히셨습니다!";
+    const answerNumberList = String(answer).split("");
+    const playerNumberList = String(playerInputValue).split("");
+    const allNumberList = [...answerNumberList, ...playerNumberList];
+    const deduplicatedAllNumberList = [...new Set(allNumberList)];
+    if (deduplicatedAllNumberList.length === THREE_DIGISTS * 2) return "낫싱";
+  }
 }
 
 const app = new App();
