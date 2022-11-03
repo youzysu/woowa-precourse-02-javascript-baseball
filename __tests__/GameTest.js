@@ -29,4 +29,28 @@ describe("게임 실행 테스트", () => {
       expect(numberArr).not.toEqual(expect.arrayContaining(["0"]));
     });
   });
+
+  test("게임 플레이어의 답변과 컴퓨터의 정답을 비교하여 결과를 반환하는 테스트", () => {
+    const resultArr = [
+      game.getResult(438, "421"),
+      game.getResult(438, "253"),
+      game.getResult(438, "328"),
+      game.getResult(438, "843"),
+      game.getResult(438, "179"),
+      game.getResult(769, "769"),
+    ];
+
+    const answerArr = [
+      { ball: 0, strike: 1 },
+      { ball: 1, strike: 0 },
+      { ball: 1, strike: 1 },
+      { ball: 3, strike: 0 },
+      { ball: 0, strike: 0 },
+      { ball: 0, strike: 3 },
+    ];
+
+    resultArr.forEach((result, idx) => {
+      expect(result).toEqual(answerArr[idx]);
+    });
+  });
 });
