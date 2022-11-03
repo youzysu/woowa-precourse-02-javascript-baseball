@@ -14,7 +14,7 @@ describe("정답과 플레이어 입력값을 비교", () => {
   test("볼과 스트라이크", () => {
     expect(app.compareNumbers(713, 123)).toEqual("1볼 1스트라이크");
     expect(app.compareNumbers(713, 145)).toEqual("1볼");
-    expect(app.compareNumbers(713, 671)).toEqual("1볼");
-    expect(app.compareNumbers(713, 216)).toEqual("2볼");
+    expect(app.compareNumbers(713, 671)).toEqual("2볼");
+    expect(app.compareNumbers(713, 216)).toEqual("1스트라이크");
   });
 });
