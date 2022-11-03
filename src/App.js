@@ -4,10 +4,12 @@ const GAME_START_TEXT = "숫자 야구 게임을 시작합니다.";
 
 class App {
   answer;
+  playerInputValue;
 
   play() {
     this.printGameStartText();
     this.createAnswer();
+    this.getPlayerInputValue();
   }
 
   printGameStartText() {
@@ -21,11 +23,15 @@ class App {
       NUMBER_DIGISTS
     );
     this.answer = Number(randomUniqueNumberList.join(""));
-    console.log(this.answer);
+  }
+
+  getPlayerInputValue() {
+    MissionUtils.Console.readLine("숫자를 입력해주세요 : ", (inputValue) => {
+      this.playerInputValue = inputValue;
+    });
   }
 }
 
 const app = new App();
-console.log(app.createAnswer());
-
+console.log(app.play());
 module.exports = App;

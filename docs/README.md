@@ -7,7 +7,7 @@
 
 **2. 플레이어 입력**
 
-- [ ] `Console.readLine`을 이용하여 플레이어의 숫자를 입력 받는다.
+- [x] `Console.readLine`을 이용하여 플레이어의 숫자를 입력 받는다. `getPlayerInputValue`
 
 **3. 플레이어 입력 유효성 검사**
 
