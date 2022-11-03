@@ -26,9 +26,30 @@ class App {
   }
 
   getPlayerInputValue() {
-    MissionUtils.Console.readLine("숫자를 입력해주세요 : ", (inputValue) => {
-      this.playerInputValue = inputValue;
-    });
+    MissionUtils.Console.readLine(
+      "숫자를 입력해주세요 : ",
+      (playerInputValue) => {
+        this.checkPlayerInputValueValidation(playerInputValue);
+      }
+    );
+  }
+
+  checkPlayerInputValueValidation(playerInputValue) {
+    if (
+      this.checkNumberDigits(playerInputValue) &&
+      !this.checkIncludesZero(playerInputValue)
+    ) {
+      this.playerInputValue = Number(playerInputValue);
+    } else {
+      throw new Error("잘못된 입력값입니다.");
+    }
+  }
+
+  checkNumberDigits(string) {
+    return string.length === NUMBER_DIGISTS;
+  }
+  checkIncludesZero(string) {
+    return string.includes("0");
   }
 }
 
