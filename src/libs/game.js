@@ -60,8 +60,14 @@ const game = {
         const isValidPlayerInput = validation.option(input);
 
         if (!isValidPlayerInput) return game.exitWithException();
+
+        if (input === "1") return game.reset();
       }
     );
+  },
+
+  reset: () => {
+    game.progress(game.getAnswer());
   },
 
   exitWithException: () => {
