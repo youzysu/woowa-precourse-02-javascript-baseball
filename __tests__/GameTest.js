@@ -53,4 +53,30 @@ describe("게임 실행 테스트", () => {
       expect(result).toEqual(answerArr[idx]);
     });
   });
+
+  test("게임결과 문구를 출력 테스트", () => {
+    const resultArr = [
+      game.printResult(0, 1),
+      game.printResult(1, 0),
+      game.printResult(1, 1),
+      game.printResult(3, 0),
+      game.printResult(0, 0),
+      game.printResult(0, 3),
+      game.printResult(2, 1),
+    ];
+
+    const answerArr = [
+      "1스트라이크",
+      "1볼 ",
+      "1볼 1스트라이크",
+      "3볼 ",
+      "낫싱",
+      "3스트라이크",
+      "2볼 1스트라이크",
+    ];
+
+    resultArr.forEach((result, idx) => {
+      expect(result).toEqual(answerArr[idx]);
+    });
+  });
 });
