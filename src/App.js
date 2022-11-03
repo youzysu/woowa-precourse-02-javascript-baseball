@@ -1,7 +1,9 @@
+const game = require("./libs/game.js");
+
 class App {
   play() {
     // 게임을 시작한다.
-    // 게임이 시작되면 시작 안내 문구가 출력된다. -> game.start()
+    game.start();
     // 이어서 정답이 만들어진다. -> game.getAnswer()
     //
     // 게임을 진행한다. -> game.progress()
@@ -22,5 +24,8 @@ class App {
     // 1. 2을 입력한 경우 게임을 완전히 종료한다.
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
