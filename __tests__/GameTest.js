@@ -16,4 +16,17 @@ describe("게임 실행 테스트", () => {
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(message));
   });
+
+  test("임의의 3자리 숫자 선택 테스트", () => {
+    const numbersArr = new Array(5);
+    for (let i = 0; i < numbersArr.length; i++) {
+      numbersArr[i] = game.getAnswer();
+    }
+
+    numbersArr.forEach((number) => {
+      const numberArr = [...new Set([...(number + "")])];
+      expect(numberArr).toHaveLength(3);
+      expect(numberArr).not.toEqual(expect.arrayContaining(["0"]));
+    });
+  });
 });
