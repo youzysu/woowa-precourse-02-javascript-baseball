@@ -1,8 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 //입력값이 서로 다른 3자리 숫자인지 아닌지 확인
-const numberCheck = (numberArr) => {
-  if (numberArr.length != 3) {
+const numberCheck = (splitNumber) => {
+  if (splitNumber.length != 3) {
     throw "잘못된 값을 입력하셨습니다. 게임을 종료합니다.";
   }
 };

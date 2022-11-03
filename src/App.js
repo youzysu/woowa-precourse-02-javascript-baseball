@@ -41,11 +41,11 @@ class App {
     MissionUtils.Console.print("숫자 야구 게임을 시작합니다.");
 
     MissionUtils.Console.readLine("숫자를 입력해주세요.", (number) => {
-      let receivedNumber = number.split("");
+      let splitInputNumber = number.split("");
 
-      numberCheck(receivedNumber);
+      numberCheck(splitInputNumber);
 
-      let point = pointCounter(receivedNumber, RANDOM_NUMBER);
+      let point = pointCounter(splitInputNumber, RANDOM_NUMBER);
       answerMessageMaker(point);
     });
   }
