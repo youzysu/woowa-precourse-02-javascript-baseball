@@ -31,6 +31,7 @@ class App {
   getPlayerInputValue() {
     MissionUtils.Console.readLine(PLAYER_INPUT_SENTENCE, (playerInputValue) => {
       this.checkPlayerInputValueValidation(playerInputValue);
+      this.compareNumbers(this.answer, this.playerInputValue);
     });
   }
 
@@ -58,8 +59,15 @@ class App {
     const allNumberList = [...answerNumberList, ...playerNumberList];
     const deduplicatedAllNumberList = [...new Set(allNumberList)];
 
-    if (answer === playerInputValue) return "3개의 숫자를 모두 맞히셨습니다!";
-    if (deduplicatedAllNumberList.length === THREE_DIGISTS * 2) return "낫싱";
+    if (answer === playerInputValue) {
+      MissionUtils.Console.print("3개의 숫자를 모두 맞히셨습니다!");
+      MissionUtils.Console.close();
+      return "3개의 숫자를 모두 맞히셨습니다!";
+    }
+    if (deduplicatedAllNumberList.length === THREE_DIGISTS * 2) {
+      MissionUtils.Console.print("낫싱");
+      return "낫싱";
+    }
 
     const baseballGameResult = playerNumberList.reduce(
       (baseballGameResult, targetPlayerNumber, targetPlayerNumberIndex) => {
@@ -86,15 +94,19 @@ class App {
     const ballSentence = ball ? `${ball}볼` : "";
     const strikeSentence = strike ? `${strike}스트라이크` : "";
     if (ball && !strike) {
+      MissionUtils.Console.print(ballSentence);
       return ballSentence;
     }
     if (strike && !ball) {
+      MissionUtils.Console.print(strikeSentence);
       return strikeSentence;
     }
+    MissionUtils.Console.print(`${ballSentence} ${strikeSentence}`);
     return `${ballSentence} ${strikeSentence}`;
   }
 }
 
 const app = new App();
-console.log(app.compareNumbers(713, 123));
+app.play();
+//app.compareNumbers(713, 123);
 module.exports = App;
