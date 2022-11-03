@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const NUMBER_DIGISTS = 3;
-const GAME_START_TEXT = "숫자 야구 게임을 시작합니다.";
+const THREE_DIGISTS = 3;
+const GAME_START_SENTENCE = "숫자 야구 게임을 시작합니다.";
+const PLAYER_INPUT_SENTENCE = "숫자를 입력해주세요 : ";
 
 class App {
   answer;
@@ -13,25 +14,22 @@ class App {
   }
 
   printGameStartText() {
-    MissionUtils.Console.print(GAME_START_TEXT);
+    MissionUtils.Console.print(GAME_START_SENTENCE);
   }
 
   createAnswer() {
     const randomUniqueNumberList = MissionUtils.Random.pickUniqueNumbersInRange(
       1,
       9,
-      NUMBER_DIGISTS
+      THREE_DIGISTS
     );
     this.answer = Number(randomUniqueNumberList.join(""));
   }
 
   getPlayerInputValue() {
-    MissionUtils.Console.readLine(
-      "숫자를 입력해주세요 : ",
-      (playerInputValue) => {
-        this.checkPlayerInputValueValidation(playerInputValue);
-      }
-    );
+    MissionUtils.Console.readLine(PLAYER_INPUT_SENTENCE, (playerInputValue) => {
+      this.checkPlayerInputValueValidation(playerInputValue);
+    });
   }
 
   checkPlayerInputValueValidation(playerInputValue) {
@@ -46,7 +44,7 @@ class App {
   }
 
   checkNumberDigits(string) {
-    return String(string).length === NUMBER_DIGISTS;
+    return String(string).length === THREE_DIGISTS;
   }
   checkIncludesZero(string) {
     return String(string).includes("0");
