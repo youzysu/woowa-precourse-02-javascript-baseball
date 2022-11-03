@@ -17,7 +17,13 @@ const game = {
   progress: () => {
     Console.readLine("숫자를 입력해주세요 : ", (input) => {
       const isValidPlayerInput = validation.playerInput(input);
+
+      if (!isValidPlayerInput) return game.exitWithException();
     });
+  },
+
+  exitWithException: () => {
+    throw new Error("잘못된 값을 입력하여 애플리케이션이 종료합니다.");
   },
 };
 
