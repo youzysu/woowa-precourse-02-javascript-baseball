@@ -7,7 +7,7 @@ const app = new App();
 describe("정답과 플레이어 입력값을 비교", () => {
   test("3개의 숫자를 모두 맞칠 경우", () => {
     //given
-    const message = "3개의 숫자를 모두 맞히셨습니다!";
+    const message = "3스트라이크";
     const logSpy = jest.spyOn(console, "log");
 
     //when
