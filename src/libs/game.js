@@ -15,10 +15,14 @@ const game = {
   getAnswer: () => game.setAnswer(),
 
   progress: (answer) => {
+    console.log(answer);
     Console.readLine("숫자를 입력해주세요 : ", (input) => {
       const isValidPlayerInput = validation.playerInput(input);
 
       if (!isValidPlayerInput) return game.exitWithException();
+
+      const { ball, strike } = game.getResult(answer, input);
+      game.printResult(ball, strike);
     });
   },
 
@@ -34,6 +38,16 @@ const game = {
     });
 
     return { ball, strike };
+  },
+
+  printResult: (ball, strike) => {
+    if (ball === 0 && strike === 0) return Console.print("낫싱");
+
+    const ballPrint = ball !== 0 ? `${ball}볼 ` : "";
+    const strikePrint = strike !== 0 ? `${strike}스트라이크` : "";
+    const resultPrint = `${ballPrint}${strikePrint}`;
+
+    Console.print(resultPrint);
   },
 
   exitWithException: () => {
