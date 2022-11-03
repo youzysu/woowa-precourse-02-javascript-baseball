@@ -6,6 +6,7 @@ class App {
     game.start();
     let answer = game.getAnswer();
     //
+    game.progress();
     // 게임을 진행한다. -> game.progress()
     // 숫자 입력 문구가 출력되며, 플레이어는 숫자를 입력한다.
     // 1. 숫자가 올바른 형식인지 판별한다. -> validation.playerNumber()

@@ -12,6 +12,10 @@ const game = {
   },
 
   getAnswer: () => game.setAnswer(),
+
+  progress: () => {
+    Console.readLine("숫자를 입력해주세요 : ", (input) => {});
+  },
 };
 
 module.exports = game;
