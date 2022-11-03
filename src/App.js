@@ -11,6 +11,10 @@ class App {
 
   play() {
     this.printGameStartText();
+    this.gameStart();
+  }
+
+  gameStart() {
     this.createAnswer();
     this.getPlayerInputValue();
   }
@@ -32,6 +36,7 @@ class App {
     MissionUtils.Console.readLine(PLAYER_INPUT_SENTENCE, (playerInputValue) => {
       this.checkPlayerInputValueValidation(playerInputValue);
       this.compareNumbers(this.answer, this.playerInputValue);
+      this.getPlayerInputValue();
     });
   }
 
@@ -53,15 +58,30 @@ class App {
     return String(string).includes("0");
   }
 
+  gameReStart() {
+    MissionUtils.Console.readLine(
+      "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.",
+      (number) => {
+        if (Number(number) === 1) {
+          this.gameStart();
+        } else {
+          MissionUtils.Console.close();
+        }
+      }
+    );
+  }
+
   compareNumbers(answer, playerInputValue) {
+    console.log(answer);
     const answerNumberList = String(answer).split("");
     const playerNumberList = String(playerInputValue).split("");
     const allNumberList = [...answerNumberList, ...playerNumberList];
     const deduplicatedAllNumberList = [...new Set(allNumberList)];
 
     if (answer === playerInputValue) {
-      MissionUtils.Console.print("3개의 숫자를 모두 맞히셨습니다!");
-      MissionUtils.Console.close();
+      MissionUtils.Console.print("3스트라이크");
+      MissionUtils.Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+      this.gameReStart();
       return;
     }
     if (deduplicatedAllNumberList.length === THREE_DIGISTS * 2) {
