@@ -30,4 +30,21 @@ describe("유효성 테스트", () => {
       expect(result).toEqual(answerArr[idx]);
     });
   });
+
+  test("게임 종료 후 답변 유효성 테스트", () => {
+    const resultArr = [
+      validation.option("1"),
+      validation.option("2"),
+      validation.option("0"),
+      validation.option(1),
+      validation.option(2),
+      validation.option("안녕하세요."),
+    ];
+
+    const answerArr = [true, true, false, false, false, false];
+
+    resultArr.forEach((result, idx) => {
+      expect(result).toEqual(answerArr[idx]);
+    });
+  });
 });
