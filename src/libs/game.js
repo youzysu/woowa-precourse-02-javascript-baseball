@@ -14,12 +14,26 @@ const game = {
 
   getAnswer: () => game.setAnswer(),
 
-  progress: () => {
+  progress: (answer) => {
     Console.readLine("숫자를 입력해주세요 : ", (input) => {
       const isValidPlayerInput = validation.playerInput(input);
 
       if (!isValidPlayerInput) return game.exitWithException();
     });
+  },
+
+  getResult: (answer, input) => {
+    let ball = 0;
+    let strike = 0;
+
+    [...input].forEach((item, idx) => {
+      if (![...(answer + "")].includes(item)) return;
+
+      if ((answer + "")[idx] === item) strike++;
+      else ball++;
+    });
+
+    return { ball, strike };
   },
 
   exitWithException: () => {
