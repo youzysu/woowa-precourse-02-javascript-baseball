@@ -19,11 +19,11 @@ const pointCounter = (receive, random) => {
 };
 
 const answerMessageMaker = (arr) => {
-  if (arr == [0, 0]) {
+  if (arr[0] == 0 && arr[1] == 0) {
     MissionUtils.Console.print("낫싱");
   } else if (arr[1] == 3) {
     MissionUtils.Console.print(
-      "3스트라이크\n 3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+      "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료"
     );
   } else if (arr[0] == 0) {
     MissionUtils.Console.print(arr[1] + "스트라이크");
