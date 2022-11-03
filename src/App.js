@@ -46,10 +46,10 @@ class App {
   }
 
   checkNumberDigits(string) {
-    return string.length === NUMBER_DIGISTS;
+    return String(string).length === NUMBER_DIGISTS;
   }
   checkIncludesZero(string) {
-    return string.includes("0");
+    return String(string).includes("0");
   }
 }
 
