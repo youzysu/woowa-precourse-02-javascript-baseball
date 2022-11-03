@@ -4,7 +4,7 @@ class App {
   play() {
     // 게임을 시작한다.
     game.start();
-    // 이어서 정답이 만들어진다. -> game.getAnswer()
+    let answer = game.getAnswer();
     //
     // 게임을 진행한다. -> game.progress()
     // 숫자 입력 문구가 출력되며, 플레이어는 숫자를 입력한다.
