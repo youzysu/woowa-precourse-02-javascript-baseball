@@ -1,4 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
+const validation = require("./validation");
 
 const game = {
   start: () => {
@@ -14,7 +15,9 @@ const game = {
   getAnswer: () => game.setAnswer(),
 
   progress: () => {
-    Console.readLine("숫자를 입력해주세요 : ", (input) => {});
+    Console.readLine("숫자를 입력해주세요 : ", (input) => {
+      const isValidPlayerInput = validation.playerInput(input);
+    });
   },
 };
 
