@@ -62,12 +62,18 @@ const game = {
         if (!isValidPlayerInput) return game.exitWithException();
 
         if (input === "1") return game.reset();
+
+        game.end();
       }
     );
   },
 
   reset: () => {
     game.progress(game.getAnswer());
+  },
+
+  end: () => {
+    Console.close();
   },
 
   exitWithException: () => {
