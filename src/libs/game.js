@@ -23,6 +23,8 @@ const game = {
 
       const { ball, strike } = game.getResult(answer, input);
       game.printResult(ball, strike);
+
+      if (strike !== 3) return game.progress(answer);
     });
   },
 
