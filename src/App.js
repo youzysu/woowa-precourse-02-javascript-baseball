@@ -53,15 +53,48 @@ class App {
   }
 
   compareNumbers(answer, playerInputValue) {
-    if (answer === playerInputValue) return "3개의 숫자를 모두 맞히셨습니다!";
     const answerNumberList = String(answer).split("");
     const playerNumberList = String(playerInputValue).split("");
     const allNumberList = [...answerNumberList, ...playerNumberList];
     const deduplicatedAllNumberList = [...new Set(allNumberList)];
+
+    if (answer === playerInputValue) return "3개의 숫자를 모두 맞히셨습니다!";
     if (deduplicatedAllNumberList.length === THREE_DIGISTS * 2) return "낫싱";
+
+    const baseballGameResult = playerNumberList.reduce(
+      (baseballGameResult, targetPlayerNumber, targetPlayerNumberIndex) => {
+        const indexOf = answerNumberList.indexOf(targetPlayerNumber);
+        if (indexOf !== -1) {
+          if (indexOf === targetPlayerNumberIndex) {
+            baseballGameResult["strike"]
+              ? baseballGameResult["strike"]++
+              : (baseballGameResult["strike"] = 1);
+          } else {
+            baseballGameResult["ball"]
+              ? baseballGameResult["ball"]++
+              : (baseballGameResult["ball"] = 1);
+          }
+        }
+        return baseballGameResult;
+      },
+      {}
+    );
+    return this.makeBallStrikeSentence(baseballGameResult);
+  }
+
+  makeBallStrikeSentence({ strike, ball }) {
+    const ballSentence = ball ? `${ball}볼` : "";
+    const strikeSentence = strike ? `${strike}스트라이크` : "";
+    if (ball && !strike) {
+      return ballSentence;
+    }
+    if (strike && !ball) {
+      return strikeSentence;
+    }
+    return `${ballSentence} ${strikeSentence}`;
   }
 }
 
 const app = new App();
-console.log(app.play());
+console.log(app.compareNumbers(713, 123));
 module.exports = App;
