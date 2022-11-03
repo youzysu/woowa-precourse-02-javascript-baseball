@@ -14,8 +14,24 @@ const pointCounter = (receive, random) => {
     } else if (random.includes(Number(item))) {
       ballStrikeCount[0] += 1;
     }
-    console.log(ballStrikeCount);
   });
+  return ballStrikeCount;
+};
+
+const answerMessageMaker = (arr) => {
+  if (arr == [0, 0]) {
+    MissionUtils.Console.print("낫싱");
+  } else if (arr[1] == 3) {
+    MissionUtils.Console.print(
+      "3스트라이크\n 3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+    );
+  } else if (arr[0] == 0) {
+    MissionUtils.Console.print(arr[1] + "스트라이크");
+  } else if (arr[1] == 0) {
+    MissionUtils.Console.print(arr[0] + "볼");
+  } else {
+    MissionUtils.Console.print(arr[0] + "볼" + arr[1] + "스트라이크");
+  }
 };
 
 class App {
@@ -28,7 +44,9 @@ class App {
       let receivedNumber = number.split("");
 
       numberCheck(receivedNumber);
-      pointCounter(receivedNumber, RANDOM_NUMBER);
+
+      let point = pointCounter(receivedNumber, RANDOM_NUMBER);
+      answerMessageMaker(point);
     });
   }
 }
