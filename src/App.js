@@ -1,7 +1,9 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const THREE_DIGISTS = 3;
-const GAME_START_SENTENCE = "숫자 야구 게임을 시작합니다.";
-const PLAYER_INPUT_SENTENCE = "숫자를 입력해주세요 : ";
+const {
+  GAME_START_SENTENCE,
+  PLAYER_INPUT_SENTENCE,
+  THREE_DIGISTS,
+} = require("./constants");
 
 class App {
   answer;
