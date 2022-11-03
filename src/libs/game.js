@@ -15,7 +15,6 @@ const game = {
   getAnswer: () => game.setAnswer(),
 
   progress: (answer) => {
-    console.log(answer);
     Console.readLine("숫자를 입력해주세요 : ", (input) => {
       const isValidPlayerInput = validation.playerInput(input);
 
@@ -25,6 +24,8 @@ const game = {
       game.printResult(ball, strike);
 
       if (strike !== 3) return game.progress(answer);
+
+      game.printEndSentence();
     });
   },
 
@@ -50,6 +51,15 @@ const game = {
     const resultPrint = `${ballPrint}${strikePrint}`;
 
     Console.print(resultPrint);
+  },
+
+  printEndSentence: () => {
+    Console.readLine(
+      "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n",
+      (input) => {
+        console.log(input);
+      }
+    );
   },
 
   exitWithException: () => {
