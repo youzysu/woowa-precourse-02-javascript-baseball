@@ -11,6 +11,15 @@ const validation = {
 
     return true;
   },
+
+  option: (input) => {
+    let isValid;
+
+    if (input !== "1" && input !== "2") isValid = false;
+    else isValid = true;
+
+    return isValid;
+  },
 };
 
 module.exports = validation;
