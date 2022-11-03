@@ -62,11 +62,11 @@ class App {
     if (answer === playerInputValue) {
       MissionUtils.Console.print("3개의 숫자를 모두 맞히셨습니다!");
       MissionUtils.Console.close();
-      return "3개의 숫자를 모두 맞히셨습니다!";
+      return;
     }
     if (deduplicatedAllNumberList.length === THREE_DIGISTS * 2) {
       MissionUtils.Console.print("낫싱");
-      return "낫싱";
+      return;
     }
 
     const baseballGameResult = playerNumberList.reduce(
@@ -87,7 +87,7 @@ class App {
       },
       {}
     );
-    return this.makeBallStrikeSentence(baseballGameResult);
+    this.makeBallStrikeSentence(baseballGameResult);
   }
 
   makeBallStrikeSentence({ strike, ball }) {
@@ -95,14 +95,13 @@ class App {
     const strikeSentence = strike ? `${strike}스트라이크` : "";
     if (ball && !strike) {
       MissionUtils.Console.print(ballSentence);
-      return ballSentence;
+      return;
     }
     if (strike && !ball) {
       MissionUtils.Console.print(strikeSentence);
-      return strikeSentence;
+      return;
     }
     MissionUtils.Console.print(`${ballSentence} ${strikeSentence}`);
-    return `${ballSentence} ${strikeSentence}`;
   }
 }
 
