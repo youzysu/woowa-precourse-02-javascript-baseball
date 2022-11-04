@@ -36,8 +36,8 @@ class BaseBallGame {
 
   checkPlayerInputValueValidation(playerInputValue) {
     if (
-      this.checkNumberDigits(playerInputValue) &&
-      !this.checkIncludesZero(playerInputValue)
+      this.isThreeDigits(playerInputValue) &&
+      !this.isIncludesZero(playerInputValue)
     ) {
       this.playerInputValue = Number(playerInputValue);
     } else {
@@ -45,10 +45,10 @@ class BaseBallGame {
     }
   }
 
-  checkNumberDigits(string) {
+  isThreeDigits(string) {
     return String(string).length === THREE_DIGISTS;
   }
-  checkIncludesZero(string) {
+  isIncludesZero(string) {
     return String(string).includes("0");
   }
 
