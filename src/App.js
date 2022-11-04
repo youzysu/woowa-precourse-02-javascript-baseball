@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const { MESSAGE, OPTION } = require("./libs/const.js");
 const game = require("./libs/game.js");
 const validation = require("./libs/validation.js");
 
@@ -9,11 +10,11 @@ class App {
   }
 
   start() {
-    Console.print("숫자 야구 게임을 시작합니다.");
+    Console.print(MESSAGE.START);
   }
 
   progress(answer) {
-    Console.readLine("숫자를 입력해주세요 : ", (input) => {
+    Console.readLine(MESSAGE.INPUT, (input) => {
       if (!validation.playerInput(input)) return game.quitWithException();
 
       const { ball, strike } = game.getResult(answer, input);
@@ -26,16 +27,13 @@ class App {
   }
 
   end() {
-    Console.readLine(
-      "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n",
-      (input) => {
-        if (!validation.option(input)) return game.quitWithException();
+    Console.readLine(MESSAGE.END, (input) => {
+      if (!validation.option(input)) return game.quitWithException();
 
-        if (input === "1") return this.reset();
+      if (input === OPTION.RESTART) return this.restart();
 
-        this.exit();
-      }
-    );
+      this.exit();
+    });
   }
 
   restart() {

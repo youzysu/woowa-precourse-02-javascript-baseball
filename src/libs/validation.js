@@ -1,3 +1,5 @@
+const { OPTION, VALID_NUMBER } = require("./const");
+
 const validation = {
   playerInput: (input) => {
     if (input.match(/[^1-9]/g)) return false;
@@ -15,7 +17,7 @@ const validation = {
   option: (input) => {
     let isValid;
 
-    if (input !== "1" && input !== "2") isValid = false;
+    if (input !== OPTION.RESTART && input !== OPTION.END) isValid = false;
     else isValid = true;
 
     return isValid;
