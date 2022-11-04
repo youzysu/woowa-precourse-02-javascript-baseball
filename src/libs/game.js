@@ -1,11 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const validation = require("./validation");
 
 const game = {
-  start: () => {
-    Console.print("숫자 야구 게임을 시작합니다.");
-  },
-
   setAnswer: () => {
     const numberArr = [];
     while (numberArr.length < 3) {
@@ -17,21 +12,6 @@ const game = {
   },
 
   getAnswer: () => game.setAnswer(),
-
-  progress: (answer) => {
-    Console.readLine("숫자를 입력해주세요 : ", (input) => {
-      const isValidPlayerInput = validation.playerInput(input);
-
-      if (!isValidPlayerInput) return game.exitWithException();
-
-      const { ball, strike } = game.getResult(answer, input);
-      game.printResult(ball, strike);
-
-      if (strike !== 3) return game.progress(answer);
-
-      game.printEndSentence();
-    });
-  },
 
   getResult: (answer, input) => {
     let ball = 0;
@@ -58,25 +38,6 @@ const game = {
 
     if (strike === 3)
       Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-  },
-
-  printEndSentence: () => {
-    Console.readLine(
-      "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n",
-      (input) => {
-        const isValidPlayerInput = validation.option(input);
-
-        if (!isValidPlayerInput) return game.exitWithException();
-
-        if (input === "1") return game.reset();
-
-        game.end();
-      }
-    );
-  },
-
-  reset: () => {
-    game.progress(game.getAnswer());
   },
 
   end: () => {
