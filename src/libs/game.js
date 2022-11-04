@@ -40,7 +40,7 @@ const game = {
       Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
   },
 
-  exitWithException: () => {
+  quitWithException: () => {
     throw new Error("잘못된 값을 입력하여 애플리케이션이 종료합니다.");
   },
 };

@@ -13,33 +13,32 @@ class App {
   }
 
   progress(answer) {
-    console.log(answer);
     Console.readLine("숫자를 입력해주세요 : ", (input) => {
-      if (!validation.playerInput(input)) return game.exitWithException();
+      if (!validation.playerInput(input)) return game.quitWithException();
 
       const { ball, strike } = game.getResult(answer, input);
       game.printResult(ball, strike);
 
       if (strike !== 3) return this.progress(answer);
 
-      this.printEndSentence();
+      this.end();
     });
   }
 
-  printEndSentence() {
+  end() {
     Console.readLine(
       "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n",
       (input) => {
-        if (!validation.option(input)) return game.exitWithException();
+        if (!validation.option(input)) return game.quitWithException();
 
         if (input === "1") return this.progress(game.getAnswer());
 
-        this.end();
+        this.exit();
       }
     );
   }
 
-  end() {
+  exit() {
     Console.close();
   }
 }
