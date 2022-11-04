@@ -22,15 +22,24 @@ describe("정답과 플레이어 입력값을 비교", () => {
     expect(logSpy).toHaveBeenCalledWith("낫싱");
   });
 
+  const logCalledTimes = 3;
+
   test("볼과 스트라이크", () => {
     const logSpy = getLogSpy();
+
     baseballGame.compareNumbers(713, 145);
-    expect(logSpy).toHaveBeenCalledWith("1볼");
+    expect(logSpy).toHaveBeenNthCalledWith(logCalledTimes + 1, "1볼");
+
     baseballGame.compareNumbers(713, 671);
-    expect(logSpy).toHaveBeenCalledWith("2볼");
+    expect(logSpy).toHaveBeenNthCalledWith(logCalledTimes + 2, "2볼");
+
     baseballGame.compareNumbers(713, 123);
-    expect(logSpy).toHaveBeenCalledWith("1볼 1스트라이크");
+    expect(logSpy).toHaveBeenNthCalledWith(
+      logCalledTimes + 3,
+      "1볼 1스트라이크"
+    );
+
     baseballGame.compareNumbers(713, 216);
-    expect(logSpy).toHaveBeenCalledWith("1스트라이크");
+    expect(logSpy).toHaveBeenNthCalledWith(logCalledTimes + 4, "1스트라이크");
   });
 });
