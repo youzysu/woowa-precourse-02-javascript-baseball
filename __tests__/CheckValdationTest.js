@@ -14,4 +14,11 @@ describe("플레이 입력값 유효성 검사", () => {
     expect(Validation.isIncludesZero("123")).toEqual(false);
     expect(Validation.isIncludesZero("777")).toEqual(false);
   });
+  test("입력된 숫자가 모두 다른 숫자인지 검사", () => {
+    expect(Validation.isUniqueNumbers("123")).toEqual(true);
+    expect(Validation.isUniqueNumbers(123)).toEqual(true);
+    expect(Validation.isUniqueNumbers(111)).toEqual(false);
+    expect(Validation.isUniqueNumbers("111")).toEqual(false);
+    expect(Validation.isUniqueNumbers("181")).toEqual(false);
+  });
 });
