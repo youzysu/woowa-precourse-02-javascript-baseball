@@ -38,7 +38,7 @@ class App {
     );
   }
 
-  reset() {
+  restart() {
     this.progress(game.getAnswer());
   }
 
