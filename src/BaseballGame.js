@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 const { PLAYER_INPUT_SENTENCE, THREE_DIGISTS } = require("./constants");
+const Validation = require("./Validation");
 
 class BaseBallGame {
   answer;
@@ -28,28 +29,12 @@ class BaseBallGame {
 
   getPlayerInputValue() {
     MissionUtils.Console.readLine(PLAYER_INPUT_SENTENCE, (playerInputValue) => {
-      this.checkPlayerInputValueValidation(playerInputValue);
+      if (Validation.passAllValidationChecks(playerInputValue)) {
+        this.playerInputValue = Number(playerInputValue);
+      }
       this.compareNumbers(this.answer, this.playerInputValue);
       this.getPlayerInputValue();
     });
-  }
-
-  checkPlayerInputValueValidation(playerInputValue) {
-    if (
-      this.isThreeDigits(playerInputValue) &&
-      !this.isIncludesZero(playerInputValue)
-    ) {
-      this.playerInputValue = Number(playerInputValue);
-    } else {
-      throw new Error("잘못된 입력값입니다.");
-    }
-  }
-
-  isThreeDigits(string) {
-    return String(string).length === THREE_DIGISTS;
-  }
-  isIncludesZero(string) {
-    return String(string).includes("0");
   }
 
   gameReStart() {
