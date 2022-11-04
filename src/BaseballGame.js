@@ -18,9 +18,9 @@ class BaseBallGame {
   createAnswer() {
     const randomUniqueNumberList = [];
     while (randomUniqueNumberList.length < THREE_DIGISTS) {
-      const number = MissionUtils.Random.pickNumberInRange(1, 9);
-      if (!randomUniqueNumberList.includes(number)) {
-        randomUniqueNumberList.push(number);
+      const randomNumber = MissionUtils.Random.pickNumberInRange(1, 9);
+      if (!randomUniqueNumberList.includes(randomNumber)) {
+        randomUniqueNumberList.push(randomNumber);
       }
     }
     this.answer = Number(randomUniqueNumberList.join(""));
