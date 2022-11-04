@@ -5,12 +5,8 @@ const { GAME_START_SENTENCE } = require("./constants");
 
 class App {
   play() {
-    this.printGameStartSentence();
-    new BaseBallGame();
-  }
-
-  printGameStartSentence() {
     MissionUtils.Console.print(GAME_START_SENTENCE);
+    new BaseBallGame();
   }
 }
 
