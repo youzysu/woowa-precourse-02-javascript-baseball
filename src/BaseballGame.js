@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Random, Console } = require("@woowacourse/mission-utils");
 
 const { PLAYER_INPUT_SENTENCE, THREE_DIGISTS } = require("./constants");
 const Validation = require("./Validation");
@@ -19,7 +19,7 @@ class BaseBallGame {
   createAnswer() {
     const randomUniqueNumberList = [];
     while (randomUniqueNumberList.length < THREE_DIGISTS) {
-      const randomNumber = MissionUtils.Random.pickNumberInRange(1, 9);
+      const randomNumber = Random.pickNumberInRange(1, 9);
       if (!randomUniqueNumberList.includes(randomNumber)) {
         randomUniqueNumberList.push(randomNumber);
       }
@@ -28,7 +28,7 @@ class BaseBallGame {
   }
 
   getPlayerInputValue() {
-    MissionUtils.Console.readLine(PLAYER_INPUT_SENTENCE, (playerInputValue) => {
+    Console.readLine(PLAYER_INPUT_SENTENCE, (playerInputValue) => {
       if (Validation.passAllValidationChecks(playerInputValue)) {
         this.playerInputValue = Number(playerInputValue);
       }
@@ -38,13 +38,13 @@ class BaseBallGame {
   }
 
   gameReStart() {
-    MissionUtils.Console.readLine(
+    Console.readLine(
       "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.",
       (number) => {
         if (Number(number) === 1) {
           this.gameStart();
         } else {
-          MissionUtils.Console.close();
+          Console.close();
         }
       }
     );
@@ -58,13 +58,13 @@ class BaseBallGame {
     const deduplicatedAllNumberList = [...new Set(allNumberList)];
 
     if (answer === playerInputValue) {
-      MissionUtils.Console.print("3스트라이크");
-      MissionUtils.Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+      Console.print("3스트라이크");
+      Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
       this.gameReStart();
       return;
     }
     if (deduplicatedAllNumberList.length === THREE_DIGISTS * 2) {
-      MissionUtils.Console.print("낫싱");
+      Console.print("낫싱");
       return;
     }
 
@@ -93,14 +93,14 @@ class BaseBallGame {
     const ballSentence = ball ? `${ball}볼` : "";
     const strikeSentence = strike ? `${strike}스트라이크` : "";
     if (ball && !strike) {
-      MissionUtils.Console.print(ballSentence);
+      Console.print(ballSentence);
       return;
     }
     if (strike && !ball) {
-      MissionUtils.Console.print(strikeSentence);
+      Console.print(strikeSentence);
       return;
     }
-    MissionUtils.Console.print(`${ballSentence} ${strikeSentence}`);
+    Console.print(`${ballSentence} ${strikeSentence}`);
   }
 }
 
