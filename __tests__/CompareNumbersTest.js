@@ -8,12 +8,17 @@ const getLogSpy = () => {
 
 describe("정답과 플레이어 입력값을 비교", () => {
   test("3개의 숫자를 모두 맞칠 경우", () => {
-    const message = "3스트라이크";
+    const messages = [
+      "3스트라이크",
+      "3개의 숫자를 모두 맞히셨습니다! 게임 종료",
+    ];
     const logSpy = getLogSpy();
 
     baseballGame.compareNumbers(713, 713);
 
-    expect(logSpy).toHaveBeenCalledWith(message);
+    messages.forEach((message) => {
+      expect(logSpy).toHaveBeenCalledWith(message);
+    });
   });
 
   test("하나도 없는 경우", () => {
