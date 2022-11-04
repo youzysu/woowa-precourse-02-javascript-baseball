@@ -14,7 +14,7 @@
 - [x] 3자리의 수에 0이 포함되어 있는 경우 `isIncludesZero`
 - [x] 3자리가 아닌 경우 `isThreeDigits`
 - [x] 숫자가 아닌 경우 `isNaN`
-- [ ] 서로 다른 수 검사 `isUniqueNumbers`
+- [x] 서로 다른 수 검사 `isUniqueNumbers`
 - [x] 위의 경우들을 통과하지 못하면 `throw`문을 사용해 예외를 발생시킨후 애플리케이션을 종료시킨다. `passAllValidationChecks`
 
 **4. 정답과 입력 비교** `compareNumbers`

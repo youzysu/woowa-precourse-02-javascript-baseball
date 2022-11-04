@@ -5,7 +5,8 @@ class Validation {
     if (
       this.isThreeDigits(playerInputValue) &&
       !this.isIncludesZero(playerInputValue) &&
-      !isNaN(playerInputValue)
+      !isNaN(playerInputValue) &&
+      this.isUniqueNumbers(playerInputValue)
     ) {
       return true;
     } else {
@@ -18,6 +19,10 @@ class Validation {
   }
   static isIncludesZero(string) {
     return String(string).includes("0");
+  }
+  static isUniqueNumbers(string) {
+    const numberList = String(string).split("");
+    return [...new Set(numberList)].length === THREE_DIGISTS;
   }
 }
 
