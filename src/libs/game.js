@@ -55,11 +55,14 @@ const game = {
     const resultPrint = `${ballPrint}${strikePrint}`;
 
     Console.print(resultPrint);
+
+    if (strike === 3)
+      Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
   },
 
   printEndSentence: () => {
     Console.readLine(
-      "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n",
+      "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n",
       (input) => {
         const isValidPlayerInput = validation.option(input);
 
