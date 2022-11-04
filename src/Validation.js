@@ -4,7 +4,8 @@ class Validation {
   static passAllValidationChecks(playerInputValue) {
     if (
       this.isThreeDigits(playerInputValue) &&
-      !this.isIncludesZero(playerInputValue)
+      !this.isIncludesZero(playerInputValue) &&
+      !isNaN(playerInputValue)
     ) {
       return true;
     } else {
