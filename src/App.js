@@ -31,11 +31,15 @@ class App {
       (input) => {
         if (!validation.option(input)) return game.quitWithException();
 
-        if (input === "1") return this.progress(game.getAnswer());
+        if (input === "1") return this.reset();
 
         this.exit();
       }
     );
+  }
+
+  reset() {
+    this.progress(game.getAnswer());
   }
 
   exit() {
