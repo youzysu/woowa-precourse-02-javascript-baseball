@@ -24,11 +24,13 @@ class App {
   }
 
   createAnswer() {
-    const randomUniqueNumberList = MissionUtils.Random.pickUniqueNumbersInRange(
-      1,
-      9,
-      THREE_DIGISTS
-    );
+    const randomUniqueNumberList = [];
+    while (randomUniqueNumberList.length < 3) {
+      const number = MissionUtils.Random.pickNumberInRange(1, 9);
+      if (!randomUniqueNumberList.includes(number)) {
+        randomUniqueNumberList.push(number);
+      }
+    }
     this.answer = Number(randomUniqueNumberList.join(""));
   }
 
