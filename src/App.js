@@ -34,9 +34,13 @@ class App {
 
         if (input === "1") return this.progress(game.getAnswer());
 
-        game.end();
+        this.end();
       }
     );
+  }
+
+  end() {
+    Console.close();
   }
 }
 
