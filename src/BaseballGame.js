@@ -29,6 +29,8 @@ class BaseBallGame {
 
   getPlayerInputValue() {
     Console.readLine(PLAYER_INPUT_SENTENCE, (playerInputValue) => {
+      console.log(this.answer, "정답");
+      console.log(playerInputValue, "플레이어 입력값");
       if (Validation.passAllValidationChecks(playerInputValue)) {
         this.playerInputValue = Number(playerInputValue);
       }
@@ -51,7 +53,6 @@ class BaseBallGame {
   }
 
   compareNumbers(answer, playerInputValue) {
-    console.log(answer);
     const answerNumberList = String(answer).split("");
     const playerNumberList = String(playerInputValue).split("");
     const allNumberList = [...answerNumberList, ...playerNumberList];
