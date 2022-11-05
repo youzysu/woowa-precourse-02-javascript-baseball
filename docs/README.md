@@ -150,4 +150,7 @@
   - const.js 파일을 만들어 상수화된 변수를 관리한다.
 - [x] refactor: if문 대신 배열 메서드 사용하기
   - playerInput를 검사하는 함수 내에서 if문 대신 array.every()을 사용하여 유효성을 검사한다.
-- [ ] refactor: 함수의 반환값 하나로 통일하기
+- [x] refactor: 함수의 반환값 하나로 통일하기
+  - game.quitWithException() 메서드는 에러를 생성한 후 종료를 시키기 때문에 반환하지 않는다.
+  - App 클래스의 progress() 메서드와 end() 메서드는 App의 메서드를 반환한다.
+  - game.printResult() 메서드는 아무런 값을 반환하지 않는다.

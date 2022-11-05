@@ -15,24 +15,24 @@ class App {
 
   progress(answer) {
     Console.readLine(MESSAGE.INPUT, (input) => {
-      if (!validation.playerInput(input)) return game.quitWithException();
+      if (!validation.playerInput(input)) game.quitWithException();
 
       const { ball, strike } = game.getResult(answer, input);
       game.printResult(ball, strike);
 
       if (strike !== 3) return this.progress(answer);
 
-      this.end();
+      return this.end();
     });
   }
 
   end() {
     Console.readLine(MESSAGE.END, (input) => {
-      if (!validation.option(input)) return game.quitWithException();
+      if (!validation.option(input)) game.quitWithException();
 
       if (input === OPTION.RESTART) return this.restart();
 
-      this.exit();
+      return this.exit();
     });
   }
 

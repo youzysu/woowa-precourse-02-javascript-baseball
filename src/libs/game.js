@@ -29,7 +29,10 @@ const game = {
   },
 
   printResult: (ball, strike) => {
-    if (ball === 0 && strike === 0) return Console.print(OUTPUT.NOTHING);
+    if (ball === 0 && strike === 0) {
+      Console.print(OUTPUT.NOTHING);
+      return;
+    }
 
     const ballPrint = ball !== 0 ? `${ball}${OUTPUT.BALL} ` : "";
     const strikePrint = strike !== 0 ? `${strike}${OUTPUT.STRIKE}` : "";
