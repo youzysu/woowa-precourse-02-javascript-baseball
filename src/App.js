@@ -27,9 +27,22 @@ class App {
       if (this.message == "retry") {
         this.inputNumber(computerNumber);
       } else if (this.message == "done") {
-        MissionUtils.Console.close();
+        this.inputNewOrFinish();
       }
     });
+  }
+
+  inputNewOrFinish() {
+    MissionUtils.Console.readLine(
+      "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.",
+      (number) => {
+        if (number == "1") {
+          this.play();
+        } else if (number == "2") {
+          MissionUtils.Console.close();
+        }
+      }
+    );
   }
 
   validCheck(number) {
@@ -66,7 +79,7 @@ class App {
       MissionUtils.Console.print(arr[0] + "볼");
       return "retry";
     } else {
-      MissionUtils.Console.print(arr[0] + "볼" + arr[1] + "스트라이크");
+      MissionUtils.Console.print(arr[0] + "볼" + " " + arr[1] + "스트라이크");
       return "retry";
     }
   }
