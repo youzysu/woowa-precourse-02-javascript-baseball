@@ -148,6 +148,6 @@
 - [x] refactor: 매직 넘버 상수화하기
   - 의미를 가지는 매직 넘버를 상수화한다.
   - const.js 파일을 만들어 상수화된 변수를 관리한다.
-- [ ] refactor: if문 대신 배열 메서드 사용하기
-  - if/else 문 대신 array.some(), array.every()을 사용한다.
+- [x] refactor: if문 대신 배열 메서드 사용하기
+  - playerInput를 검사하는 함수 내에서 if문 대신 array.every()을 사용하여 유효성을 검사한다.
 - [ ] refactor: 함수의 반환값 하나로 통일하기

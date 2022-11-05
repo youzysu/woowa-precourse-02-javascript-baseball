@@ -1,17 +1,20 @@
-const { OPTION, VALID_NUMBER } = require("./const");
+const { OPTION } = require("./const");
 
 const validation = {
   playerInput: (input) => {
-    if (input.match(/[^1-9]/g)) return false;
+    const isOnlyNumber = !isNaN(input);
+    const isThreeLength = input.length === 3;
+    const isNotIncludesOne = !input.includes("0");
+    const isNotOverlap = [...new Set([...(input + "")])].length === 3;
 
-    if (input.length !== 3) return false;
+    const validationList = [
+      isOnlyNumber,
+      isThreeLength,
+      isNotIncludesOne,
+      isNotOverlap,
+    ];
 
-    let numbers = [...new Set([...(input + "")])].map((num) => Number(num));
-    if (numbers.length !== 3) return false;
-
-    if (numbers.includes(0)) return false;
-
-    return true;
+    return validationList.every((item) => item);
   },
 
   option: (input) => {
