@@ -17,7 +17,7 @@ const validation = {
   option: (input) => {
     let isValid;
 
-    if (input !== OPTION.RESTART && input !== OPTION.END) isValid = false;
+    if (input !== OPTION.RESTART && input !== OPTION.EXIT) isValid = false;
     else isValid = true;
 
     return isValid;

@@ -8,7 +8,7 @@ const MESSAGE = {
 
 const OPTION = {
   RESTART: "1",
-  END: "2",
+  EXIT: "2",
 };
 
 const OUTPUT = {
