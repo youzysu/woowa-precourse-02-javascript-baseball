@@ -6,6 +6,23 @@ class Game {
     const numbers = Random.pickUniqueNumbersInRange(1, 9, 3);
     return numbers;
   }
+
+  start() {
+    const answerNumber = this.setAnswerNumber();
+    this.compareNumber(answerNumber);
+  }
+
+  compareNumber(answerNumber) {
+    Console.readLine("숫자를 입력해주세요 : ", (userInput) => {
+      Validation.isValidInput(userInput);
+      const hint = new Hint();
+      hint.getHint(userInput, answerNumber);
+      if (!hint.getResult()) {
+        this.compareNumber(answerNumber);
+      }
+      this.askReplay();
+    });
+  }
 }
 
 class Hint {
