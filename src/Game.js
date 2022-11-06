@@ -42,6 +42,7 @@ class Game {
       (answer) => {
         if (answer === "1") this.start();
         if (answer === "2") Console.close();
+        throw new Error("유효하지 않은 값을 입력하여 게임 종료됩니다.");
       }
     );
   }
