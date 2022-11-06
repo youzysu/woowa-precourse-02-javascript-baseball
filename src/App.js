@@ -1,5 +1,9 @@
-const RANGE_OF_COMPUTER_NUMBER = require("./Constant");
 const MissionUtils = require("@woowacourse/mission-utils");
+const {
+  RANGE_OF_COMPUTER_NUMBER,
+  GAME_GUIDE_MESSAGE,
+  GAME_RESULT,
+} = require("./Constant");
 
 class App {
   constructor() {
@@ -14,7 +18,7 @@ class App {
   }
 
   play() {
-    MissionUtils.Console.print("숫자 야구 게임을 시작합니다.");
+    MissionUtils.Console.print(GAME_GUIDE_MESSAGE.START_MESSAGE);
     this.game();
   }
 
@@ -24,22 +28,25 @@ class App {
   }
 
   inputNumber(computerNumber) {
-    MissionUtils.Console.readLine("숫자를 입력해주세요.", (number) => {
-      let splitInputNumber = number.split("");
-      this.validCheck(splitInputNumber);
-      let point = this.pointCounter(splitInputNumber, computerNumber);
-      this.message = this.answerMessageMaker(point);
-      if (this.message == "retry") {
-        this.inputNumber(computerNumber);
-      } else if (this.message == "done") {
-        this.inputNewOrFinish();
+    MissionUtils.Console.readLine(
+      GAME_GUIDE_MESSAGE.INPUT_MESSAGE,
+      (number) => {
+        let splitInputNumber = number.split("");
+        this.validCheck(splitInputNumber);
+        let point = this.pointCounter(splitInputNumber, computerNumber);
+        this.message = this.answerMessageMaker(point);
+        if (this.message == "retry") {
+          this.inputNumber(computerNumber);
+        } else if (this.message == "done") {
+          this.inputNewOrFinish();
+        }
       }
-    });
+    );
   }
 
   inputNewOrFinish() {
     MissionUtils.Console.readLine(
-      "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.",
+      GAME_GUIDE_MESSAGE.NEW_OR_CLOSE_MESSAGE,
       (number) => {
         if (number == "1") {
           this.play();
@@ -52,7 +59,7 @@ class App {
 
   validCheck(number) {
     if (number.length != 3) {
-      throw "잘못된 값을 입력하셨습니다. 게임을 종료합니다.";
+      throw GAME_RESULT.ERROR;
     }
   }
 
@@ -70,21 +77,21 @@ class App {
 
   answerMessageMaker(arr) {
     if (arr[0] == 0 && arr[1] == 0) {
-      MissionUtils.Console.print("낫싱");
+      MissionUtils.Console.print(GAME_RESULT.NOTHING);
       return "retry";
     } else if (arr[1] == 3) {
-      MissionUtils.Console.print(
-        "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료"
-      );
+      MissionUtils.Console.print(GAME_RESULT.THREE_STRIKE);
       return "done";
     } else if (arr[0] == 0) {
-      MissionUtils.Console.print(arr[1] + "스트라이크");
+      MissionUtils.Console.print(arr[1] + GAME_RESULT.STRIKE);
       return "retry";
     } else if (arr[1] == 0) {
-      MissionUtils.Console.print(arr[0] + "볼");
+      MissionUtils.Console.print(arr[0] + GAME_RESULT.BALL);
       return "retry";
     } else {
-      MissionUtils.Console.print(arr[0] + "볼" + " " + arr[1] + "스트라이크");
+      MissionUtils.Console.print(
+        arr[0] + GAME_RESULT.BALL + " " + arr[1] + GAME_RESULT.STRIKE
+      );
       return "retry";
     }
   }
