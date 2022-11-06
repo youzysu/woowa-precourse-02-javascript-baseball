@@ -1,5 +1,5 @@
-const { Random, Console } = require("@woowacourse/mission-utils");
-const Validation = require("../src/Validation.js");
+const { Random, Console } = require('@woowacourse/mission-utils');
+const Validation = require('../src/Validation.js');
 
 class Game {
   setAnswerNumber() {
@@ -19,7 +19,7 @@ class Game {
   }
 
   compareNumber(answerNumber) {
-    Console.readLine("숫자를 입력해주세요 : ", (userInput) => {
+    Console.readLine('숫자를 입력해주세요 : ', userInput => {
       Validation.isValidInput(userInput);
 
       const trial = new Trial();
@@ -30,7 +30,7 @@ class Game {
       }
 
       if (trial.isCorrect()) {
-        Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        Console.print('3개의 숫자를 모두 맞히셨습니다! 게임 종료');
         this.askReplay();
       }
     });
@@ -38,12 +38,12 @@ class Game {
 
   askReplay() {
     Console.readLine(
-      "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.",
-      (answer) => {
-        if (answer === "1") this.start();
-        if (answer === "2") Console.close();
-        throw new Error("유효하지 않은 값을 입력하여 게임 종료됩니다.");
-      }
+      '게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.',
+      answer => {
+        if (answer === '1') this.start();
+        if (answer === '2') Console.close();
+        throw new Error('유효하지 않은 값을 입력하여 게임 종료됩니다.');
+      },
     );
   }
 }
@@ -57,8 +57,8 @@ class Trial {
   counterStrikeBall(userInput, answerNumber) {
     const userNumber = userInput
       .toString()
-      .split("")
-      .map((str) => Number(str));
+      .split('')
+      .map(str => Number(str));
 
     for (let index = 0; index < userNumber.length; index++) {
       if (userNumber[index] === answerNumber[index]) this.strikeCount++;
@@ -79,7 +79,7 @@ class Trial {
     const ballCount = hint[1];
 
     if (strikeCount === 0 && ballCount === 0) {
-      Console.print("낫싱");
+      Console.print('낫싱');
     }
     if (strikeCount === 0 && ballCount > 0) {
       Console.print(`${ballCount}볼`);
