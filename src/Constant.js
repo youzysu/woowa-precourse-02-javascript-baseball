@@ -1,0 +1,7 @@
+const RANGE_OF_COMPUTER_NUMBER = {
+  MAXIMUM: 9,
+  MINIMUM: 1,
+  LENGTH: 3,
+};
+
+module.exports = RANGE_OF_COMPUTER_NUMBER;

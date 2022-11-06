@@ -1,3 +1,4 @@
+const RANGE_OF_COMPUTER_NUMBER = require("./Constant");
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
@@ -5,7 +6,11 @@ class App {
     this.message;
   }
   get computerNumber() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(1, 9, 3);
+    return MissionUtils.Random.pickUniqueNumbersInRange(
+      RANGE_OF_COMPUTER_NUMBER.MINIMUM,
+      RANGE_OF_COMPUTER_NUMBER.MAXIMUM,
+      RANGE_OF_COMPUTER_NUMBER.LENGTH
+    );
   }
 
   play() {
