@@ -3,7 +3,13 @@ const Validation = require("../src/Validation.js");
 
 class Game {
   setAnswerNumber() {
-    const numbers = Random.pickUniqueNumbersInRange(1, 9, 3);
+    const numbers = [];
+    while (numbers.length < 3) {
+      const number = Random.pickNumberInRange(1, 9);
+      if (!numbers.includes(number)) {
+        numbers.push(number);
+      }
+    }
     return numbers;
   }
 
@@ -15,12 +21,18 @@ class Game {
   compareNumber(answerNumber) {
     Console.readLine("숫자를 입력해주세요 : ", (userInput) => {
       Validation.isValidInput(userInput);
+
       const trial = new Trial();
       trial.getHint(userInput, answerNumber);
+
       if (!trial.isCorrect()) {
         this.compareNumber(answerNumber);
       }
-      this.askReplay();
+
+      if (trial.isCorrect()) {
+        Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        this.askReplay();
+      }
     });
   }
 
