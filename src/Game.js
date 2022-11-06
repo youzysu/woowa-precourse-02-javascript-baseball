@@ -40,8 +40,8 @@ class Game {
     Console.readLine(
       '게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.',
       answer => {
-        if (answer === '1') this.start();
-        if (answer === '2') Console.close();
+        if (answer === '1') return this.start();
+        if (answer === '2') return Console.close();
         throw new Error('유효하지 않은 값을 입력하여 게임 종료됩니다.');
       },
     );
