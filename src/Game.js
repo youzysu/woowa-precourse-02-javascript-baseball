@@ -15,9 +15,9 @@ class Game {
   compareNumber(answerNumber) {
     Console.readLine("숫자를 입력해주세요 : ", (userInput) => {
       Validation.isValidInput(userInput);
-      const hint = new Hint();
-      hint.getHint(userInput, answerNumber);
-      if (!hint.getResult()) {
+      const trial = new Trial();
+      trial.getHint(userInput, answerNumber);
+      if (!trial.isCorrect()) {
         this.compareNumber(answerNumber);
       }
       this.askReplay();
@@ -35,7 +35,7 @@ class Game {
   }
 }
 
-class Hint {
+class Trial {
   constructor() {
     this.strikeCount = 0;
     this.ballCount = 0;
@@ -79,7 +79,7 @@ class Hint {
     }
   }
 
-  getResult() {
+  isCorrect() {
     if (this.strikeCount === 3) {
       return true;
     }
