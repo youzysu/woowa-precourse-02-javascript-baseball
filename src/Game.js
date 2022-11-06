@@ -1,28 +1,63 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Random, Console } = require("@woowacourse/mission-utils");
+const Validation = require("../src/Validation.js");
 
 class Game {
-  constructor() {
-    this.strikeCount = 0
-    this.ballCount = 0
-  }
-
   setAnswerNumber() {
-    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 9, 3)
-    return numbers
-  }
-
-  counterStrikeBall(userInput) {
-    const userNumber = userInput.toString().split('').map(str => Number(str))
-    const answerNumber = this.setAnswerNumber()
-
-    for (let index = 0; index < userNumber.length; index++) {
-      if (userNumber[index] === answerNumber[index]) this.strikeCount++
-      else {
-        if (answerNumber.includes(userNumber[index])) this.ballCount++
-      }
-    }
-    
-    const hint = { strike: this.strikeCount, ball: this.ballCount }
-    return hint
+    const numbers = Random.pickUniqueNumbersInRange(1, 9, 3);
+    return numbers;
   }
 }
+
+class Hint {
+  constructor() {
+    this.strikeCount = 0;
+    this.ballCount = 0;
+  }
+
+  counterStrikeBall(userInput, answerNumber) {
+    const userNumber = userInput
+      .toString()
+      .split("")
+      .map((str) => Number(str));
+
+    for (let index = 0; index < userNumber.length; index++) {
+      if (userNumber[index] === answerNumber[index]) this.strikeCount++;
+      if (
+        answerNumber.includes(userNumber[index]) &&
+        userNumber[index] !== answerNumber[index]
+      )
+        this.ballCount++;
+    }
+
+    const hint = [this.strikeCount, this.ballCount];
+    return hint;
+  }
+
+  getHint(userInput, answerNumber) {
+    const hint = this.counterStrikeBall(userInput, answerNumber);
+    const strikeCount = hint[0];
+    const ballCount = hint[1];
+
+    if (strikeCount === 0 && ballCount === 0) {
+      Console.print("낫싱");
+    }
+    if (strikeCount === 0 && ballCount > 0) {
+      Console.print(`${ballCount}볼`);
+    }
+    if (strikeCount > 0 && ballCount === 0) {
+      Console.print(`${strikeCount}스트라이크`);
+    }
+    if (strikeCount > 0 && ballCount > 0) {
+      Console.print(`${ballCount}볼 ${strikeCount}스트라이크`);
+    }
+  }
+
+  getResult() {
+    if (this.strikeCount === 3) {
+      return true;
+    }
+    return false;
+  }
+}
+
+module.exports = new Game();
