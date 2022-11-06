@@ -7,16 +7,15 @@ const {
 
 class App {
   get computerNumber() {
-    let arr = [];
-    for (let i = 0; i < RANGE_OF_COMPUTER_NUMBER.LENGTH; i++) {
-      arr.push(
-        MissionUtils.Random.pickNumberInRange(
-          RANGE_OF_COMPUTER_NUMBER.MINIMUM,
-          RANGE_OF_COMPUTER_NUMBER.MAXIMUM
-        )
+    let pickedNumber = [];
+    while (pickedNumber.length < RANGE_OF_COMPUTER_NUMBER.LENGTH) {
+      let number = MissionUtils.Random.pickNumberInRange(
+        RANGE_OF_COMPUTER_NUMBER.MINIMUM,
+        RANGE_OF_COMPUTER_NUMBER.MAXIMUM
       );
+      if (!pickedNumber.includes(number)) pickedNumber.push(number);
     }
-    return arr;
+    return pickedNumber;
   }
 
   play() {
