@@ -23,6 +23,16 @@ class Game {
       this.askReplay();
     });
   }
+
+  askReplay() {
+    Console.readLine(
+      "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.",
+      (answer) => {
+        if (answer === "1") this.start();
+        if (answer === "2") Console.close();
+      }
+    );
+  }
 }
 
 class Hint {
