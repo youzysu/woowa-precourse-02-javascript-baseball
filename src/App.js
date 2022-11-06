@@ -40,16 +40,16 @@ class App {
         );
 
         let response = this.gameResult(ballStrike);
-        if (response == "incorrect") {
+        if (response) {
+          this.restartOrFinish();
+        } else {
           this.inputNumber(computerNumber);
-        } else if (response == "correct") {
-          this.inputNewOrFinish();
         }
       }
     );
   }
 
-  inputNewOrFinish() {
+  restartOrFinish() {
     MissionUtils.Console.readLine(
       GAME_GUIDE_MESSAGE.NEW_OR_CLOSE_MESSAGE,
       (answer) => {
@@ -62,42 +62,46 @@ class App {
     );
   }
 
-  validCheck(number) {
-    if (number.length != 3) {
+  validCheck(useInputNumber) {
+    if (useInputNumber.length != 3) {
       throw GAME_RESULT.ERROR;
     }
   }
 
-  ballStrikeCounter(receive, random) {
+  ballStrikeCounter(useInputNumber, computerNumber) {
     let ballStrikeCount = [0, 0];
-    receive.forEach((item, index) => {
-      if (item == random[index]) {
+    useInputNumber.forEach((item, index) => {
+      if (item == computerNumber[index]) {
         ballStrikeCount[1] += 1;
-      } else if (random.includes(Number(item))) {
+      } else if (computerNumber.includes(Number(item))) {
         ballStrikeCount[0] += 1;
       }
     });
     return ballStrikeCount;
   }
 
-  gameResult(arr) {
-    if (arr[0] == 0 && arr[1] == 0) {
+  gameResult(ballStrike) {
+    if (ballStrike[0] == 0 && ballStrike[1] == 0) {
       MissionUtils.Console.print(GAME_RESULT.NOTHING);
-      return "incorrect";
-    } else if (arr[1] == 3) {
+      return false;
+    } else if (ballStrike[1] == 3) {
       MissionUtils.Console.print(GAME_RESULT.THREE_STRIKE);
-      return "correct";
-    } else if (arr[0] == 0) {
-      MissionUtils.Console.print(arr[1] + GAME_RESULT.STRIKE);
-      return "incorrect";
-    } else if (arr[1] == 0) {
-      MissionUtils.Console.print(arr[0] + GAME_RESULT.BALL);
-      return "incorrect";
+      return true;
+    } else if (ballStrike[0] == 0) {
+      MissionUtils.Console.print(ballStrike[1] + GAME_RESULT.STRIKE);
+      return false;
+    } else if (ballStrike[1] == 0) {
+      MissionUtils.Console.print(ballStrike[0] + GAME_RESULT.BALL);
+      return false;
     } else {
       MissionUtils.Console.print(
-        arr[0] + GAME_RESULT.BALL + " " + arr[1] + GAME_RESULT.STRIKE
+        ballStrike[0] +
+          GAME_RESULT.BALL +
+          " " +
+          ballStrike[1] +
+          GAME_RESULT.STRIKE
       );
-      return "incorrect";
+      return false;
     }
   }
 }
