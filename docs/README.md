@@ -3,6 +3,7 @@
 ## 1. 랜덤 숫자 발급
 
 - Random 값 추출은 MissionUtils 라이브러리의 Random.pickNumberInRange()를 활용
+- Random.pickNumberInRange() 사용시 중복 제거필요.
 
 ## 2. 입력값 받기
 

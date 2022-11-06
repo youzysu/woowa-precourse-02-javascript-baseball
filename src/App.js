@@ -6,15 +6,17 @@ const {
 } = require("./Constant");
 
 class App {
-  constructor() {
-    this.message;
-  }
   get computerNumber() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(
-      RANGE_OF_COMPUTER_NUMBER.MINIMUM,
-      RANGE_OF_COMPUTER_NUMBER.MAXIMUM,
-      RANGE_OF_COMPUTER_NUMBER.LENGTH
-    );
+    let arr = [];
+    for (let i = 0; i < RANGE_OF_COMPUTER_NUMBER.LENGTH; i++) {
+      arr.push(
+        MissionUtils.Random.pickNumberInRange(
+          RANGE_OF_COMPUTER_NUMBER.MINIMUM,
+          RANGE_OF_COMPUTER_NUMBER.MAXIMUM
+        )
+      );
+    }
+    return arr;
   }
 
   play() {
@@ -33,11 +35,15 @@ class App {
       (number) => {
         let splitInputNumber = number.split("");
         this.validCheck(splitInputNumber);
-        let point = this.pointCounter(splitInputNumber, computerNumber);
-        this.message = this.answerMessageMaker(point);
-        if (this.message == "retry") {
+        let ballStrike = this.ballStrikeCounter(
+          splitInputNumber,
+          computerNumber
+        );
+
+        let response = this.gameResult(ballStrike);
+        if (response == "incorrect") {
           this.inputNumber(computerNumber);
-        } else if (this.message == "done") {
+        } else if (response == "correct") {
           this.inputNewOrFinish();
         }
       }
@@ -47,10 +53,10 @@ class App {
   inputNewOrFinish() {
     MissionUtils.Console.readLine(
       GAME_GUIDE_MESSAGE.NEW_OR_CLOSE_MESSAGE,
-      (number) => {
-        if (number == "1") {
+      (answer) => {
+        if (answer == "1") {
           this.play();
-        } else if (number == "2") {
+        } else if (answer == "2") {
           MissionUtils.Console.close();
         }
       }
@@ -63,7 +69,7 @@ class App {
     }
   }
 
-  pointCounter(receive, random) {
+  ballStrikeCounter(receive, random) {
     let ballStrikeCount = [0, 0];
     receive.forEach((item, index) => {
       if (item == random[index]) {
@@ -75,24 +81,24 @@ class App {
     return ballStrikeCount;
   }
 
-  answerMessageMaker(arr) {
+  gameResult(arr) {
     if (arr[0] == 0 && arr[1] == 0) {
       MissionUtils.Console.print(GAME_RESULT.NOTHING);
-      return "retry";
+      return "incorrect";
     } else if (arr[1] == 3) {
       MissionUtils.Console.print(GAME_RESULT.THREE_STRIKE);
-      return "done";
+      return "correct";
     } else if (arr[0] == 0) {
       MissionUtils.Console.print(arr[1] + GAME_RESULT.STRIKE);
-      return "retry";
+      return "incorrect";
     } else if (arr[1] == 0) {
       MissionUtils.Console.print(arr[0] + GAME_RESULT.BALL);
-      return "retry";
+      return "incorrect";
     } else {
       MissionUtils.Console.print(
         arr[0] + GAME_RESULT.BALL + " " + arr[1] + GAME_RESULT.STRIKE
       );
-      return "retry";
+      return "incorrect";
     }
   }
 }
