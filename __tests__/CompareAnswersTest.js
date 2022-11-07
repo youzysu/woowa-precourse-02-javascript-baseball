@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const BaseBallGame = require("../src/BaseballGame");
+const baseballGame = require("../src/BaseballGame");
 const { BASEBALL, GAME_SENTENCE } = require("../src/constants");
 
 const mockQuestions = (answers) => {
@@ -34,7 +34,6 @@ describe("정답과 플레이어 입력값을 비교", () => {
     mockRandoms(randoms);
     mockQuestions(answers);
 
-    const baseballGame = new BaseBallGame();
     baseballGame.start();
 
     messages.forEach((message) => {
@@ -50,7 +49,6 @@ describe("정답과 플레이어 입력값을 비교", () => {
     mockRandoms(randoms);
     mockQuestions(answers);
 
-    const baseballGame = new BaseBallGame();
     baseballGame.start();
 
     expect(logSpy).toHaveBeenCalledWith(BASEBALL.NOTHING);
@@ -65,7 +63,6 @@ describe("정답과 플레이어 입력값을 비교", () => {
     mockRandoms(randoms);
     mockQuestions(answers);
 
-    const baseballGame = new BaseBallGame();
     baseballGame.start();
 
     messages.forEach((message) => {

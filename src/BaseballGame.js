@@ -101,4 +101,5 @@ class BaseBallGame {
   }
 }
 
-module.exports = BaseBallGame;
+const baseballGame = new BaseBallGame();
+module.exports = baseballGame;

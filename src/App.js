@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const BaseBallGame = require("./BaseballGame");
+const baseballGame = require("./BaseballGame");
 
 const { GAME_SENTENCE } = require("./constants");
 
@@ -10,7 +10,6 @@ class App {
   }
 }
 
-const baseballGame = new BaseBallGame();
 const app = new App();
 app.play();
 module.exports = App;
