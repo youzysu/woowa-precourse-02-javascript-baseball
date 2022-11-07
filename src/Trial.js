@@ -9,7 +9,6 @@ class Trial {
 
   counterStrikeBall(userInput, answerNumber) {
     const userNumber = userInput
-      .toString()
       .split('')
       .map(str => Number(str));
 
@@ -21,28 +20,23 @@ class Trial {
       )
         this.ballCount++;
     }
-
-    const hint = [this.strikeCount, this.ballCount];
-    return hint;
   }
 
   getHint(userInput, answerNumber) {
-    const hint = this.counterStrikeBall(userInput, answerNumber);
-    const strikeCount = hint[0];
-    const ballCount = hint[1];
-
-    if (strikeCount === 0 && ballCount === 0) {
+    this.counterStrikeBall(userInput, answerNumber)
+    
+    if (this.strikeCount === 0 && this.ballCount === 0) {
       Console.print(RESULT.NOTHING);
     }
-    if (strikeCount === 0 && ballCount > 0) {
-      Console.print(`${ballCount}` + RESULT.BALL);
+    if (this.strikeCount === 0 && this.ballCount > 0) {
+      Console.print(`${this.ballCount}` + RESULT.BALL);
     }
-    if (strikeCount > 0 && ballCount === 0) {
-      Console.print(`${strikeCount}` + RESULT.STRIKE);
+    if (this.strikeCount > 0 && this.ballCount === 0) {
+      Console.print(`${this.strikeCount}` + RESULT.STRIKE);
     }
-    if (strikeCount > 0 && ballCount > 0) {
+    if (this.strikeCount > 0 && this.ballCount > 0) {
       Console.print(
-        `${ballCount}` + RESULT.BALL + ` ${strikeCount}` + RESULT.STRIKE
+        `${this.ballCount}` + RESULT.BALL + ` ${this.strikeCount}` + RESULT.STRIKE
       );
     }
   }
