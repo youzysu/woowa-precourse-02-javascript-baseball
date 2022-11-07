@@ -1,6 +1,6 @@
-const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE } = require('../src/Materials');
 const Game = require('../src/Game');
+const { MESSAGE } = require('../src/Materials');
+const { Console } = require('@woowacourse/mission-utils');
 
 class App {
   play() {

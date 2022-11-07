@@ -1,5 +1,5 @@
-const { Console } = require('@woowacourse/mission-utils');
 const { RESULT } = require('../src/Materials');
+const { Console } = require('@woowacourse/mission-utils');
 
 class Trial {
   constructor() {

@@ -1,26 +1,28 @@
-const { Random, Console } = require('@woowacourse/mission-utils');
-const Validation = require('../src/Validation');
 const Trial = require('../src/Trial');
+const Validation = require('../src/Validation');
 const { MESSAGE, OPTION, ERROR } = require('../src/Materials');
+const { Random, Console } = require('@woowacourse/mission-utils');
 
 class Game {
   setAnswerNumber() {
     const numbers = [];
+
     while (numbers.length < 3) {
       const number = Random.pickNumberInRange(1, 9);
       if (!numbers.includes(number)) {
         numbers.push(number);
       }
     }
+
     return numbers;
   }
 
   start() {
     const answerNumber = this.setAnswerNumber();
-    this.compareNumber(answerNumber);
+    this.getResult(answerNumber);
   }
 
-  compareNumber(answerNumber) {
+  getResult(answerNumber) {
     Console.readLine(MESSAGE.TRIAL, userInput => {
       Validation.isValidInput(userInput);
 
@@ -28,11 +30,11 @@ class Game {
       trial.getHint(userInput, answerNumber);
 
       if (!trial.isCorrect()) {
-        this.compareNumber(answerNumber);
+        this.getResult(answerNumber);
       }
 
       if (trial.isCorrect()) {
-        Console.print(MESSAGE.CLEAR);
+        Console.print(MESSAGE.SUCCESS);
         this.askReplay();
       }
     });
