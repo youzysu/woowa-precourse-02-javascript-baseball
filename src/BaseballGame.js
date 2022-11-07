@@ -42,7 +42,7 @@ class BaseBallGame {
       if (Validation.passAllValidationChecks(playerInputValue)) {
         this.playerInputValue = Number(playerInputValue);
       }
-      this.compareNumbers(this.answer, this.playerInputValue);
+      this.compareAnswers(this.answer, this.playerInputValue);
       this.getPlayerInputValue();
     });
   }
@@ -57,7 +57,7 @@ class BaseBallGame {
     });
   }
 
-  compareNumbers(answer, playerInputValue) {
+  compareAnswers(answer, playerInputValue) {
     const answerNumberList = String(answer).split("");
     const playerNumberList = String(playerInputValue).split("");
     const allNumberList = [...answerNumberList, ...playerNumberList];
