@@ -50,9 +50,9 @@ class BaseBallGame {
   }
 
   compareAnswers(answer, playerInputValue) {
-    const answerNumberList = String(answer).split("");
-    const playerNumberList = String(playerInputValue).split("");
-    const allNumberList = [...answerNumberList, ...playerNumberList];
+    const answerNumbers = String(answer).split("");
+    const playerNumbers = String(playerInputValue).split("");
+    const allNumbers = [...answerNumbers, ...playerNumbers];
 
     if (answer === playerInputValue) {
       Console.print(`3${BASEBALL.STRIKE}`);
@@ -60,16 +60,16 @@ class BaseBallGame {
       this.restart();
       return;
     }
-    if (removeListDuplication(allNumberList).length === THREE_DIGISTS * 2) {
+    if (removeListDuplication(allNumbers).length === THREE_DIGISTS * 2) {
       Console.print(BASEBALL.NOTHING);
       return;
     }
 
-    const baseballGameResult = playerNumberList.reduce(
-      (baseballGameResult, targetPlayerNumber, targetPlayerNumberIndex) => {
-        const indexOf = answerNumberList.indexOf(targetPlayerNumber);
-        if (indexOf !== -1) {
-          if (indexOf === targetPlayerNumberIndex) {
+    const baseballGameResult = playerNumbers.reduce(
+      (baseballGameResult, playerNumber, playerNumberIndex) => {
+        const answerNumberIndex = answerNumbers.indexOf(playerNumber);
+        if (answerNumberIndex !== -1) {
+          if (answerNumberIndex === playerNumberIndex) {
             baseballGameResult["strike"]
               ? baseballGameResult["strike"]++
               : (baseballGameResult["strike"] = 1);
