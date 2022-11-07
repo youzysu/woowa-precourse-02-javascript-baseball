@@ -1,6 +1,11 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 
-const { PLAYER_INPUT_SENTENCE, THREE_DIGISTS } = require("./constants");
+const {
+  PLAYER_INPUT_SENTENCE,
+  THREE_DIGISTS,
+  BALL,
+  STRIKE,
+} = require("./constants");
 const Validation = require("./Validation");
 
 class BaseBallGame {
@@ -59,7 +64,7 @@ class BaseBallGame {
     const deduplicatedAllNumberList = [...new Set(allNumberList)];
 
     if (answer === playerInputValue) {
-      Console.print("3스트라이크");
+      Console.print(`3${STRIKE}`);
       Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
       this.gameReStart();
       return;
@@ -91,8 +96,8 @@ class BaseBallGame {
   }
 
   makeBallStrikeSentence({ strike, ball }) {
-    const ballSentence = ball ? `${ball}볼` : "";
-    const strikeSentence = strike ? `${strike}스트라이크` : "";
+    const ballSentence = ball ? `${ball}${BALL}` : "";
+    const strikeSentence = strike ? `${strike}${STRIKE}` : "";
     if (ball && !strike) {
       Console.print(ballSentence);
       return;
