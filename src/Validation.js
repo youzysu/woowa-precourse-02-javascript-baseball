@@ -5,6 +5,7 @@ class Validation {
     this.typeValidity(userInput);
     this.lengthValidity(userInput);
     this.isDuplicate(userInput);
+    this.scopeValidity(userInput);
   }
 
   typeValidity(userInput) {
@@ -23,6 +24,12 @@ class Validation {
     const removedSame = new Set(userInput);
     if (userInput.length !== removedSame.size) {
       throw new Error(ERROR.DUPLICATE);
+    }
+  }
+
+  scopeValidity(userInput) {
+    if (userInput.split('').includes('0')) {
+      throw new Error(ERROR.SCOPE);
     }
   }
 }

@@ -33,4 +33,12 @@ describe('정답을 맞추기 위해 입력한 값의 유효성 판단', () => {
       Validation.isValidInput(userInput);
     }).toThrow(ERROR.DUPLICATE);
   });
+
+  test('입력값에 0이 포함된 경우 예외 발생', () => {
+    const userInput = '012';
+
+    expect(() => {
+      Validation.isValidInput(userInput);
+    }).toThrow(ERROR.SCOPE);
+  });
 });
