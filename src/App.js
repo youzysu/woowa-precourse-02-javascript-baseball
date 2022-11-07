@@ -64,10 +64,15 @@ class App {
   }
 
   validCheck(userInputNumber) {
+    this.isLengthValid(userInputNumber);
+    this.isDuplicated(userInputNumber);
+  }
+  isLengthValid(userInputNumber) {
     if (userInputNumber.length != 3) {
       throw GAME_RESULT.ERROR;
     }
-
+  }
+  isDuplicated(userInputNumber) {
     let removeDuplication = new Set(userInputNumber);
     removeDuplication = [...removeDuplication];
     if (removeDuplication.length != 3) {
