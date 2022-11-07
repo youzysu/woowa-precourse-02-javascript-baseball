@@ -5,6 +5,9 @@ const {
   THREE_DIGISTS,
   BALL,
   STRIKE,
+  NOTHING,
+  GAME_END_SENTENCE,
+  GAME_RESTART_SENTENCE,
 } = require("./constants");
 const Validation = require("./Validation");
 
@@ -45,16 +48,13 @@ class BaseBallGame {
   }
 
   gameReStart() {
-    Console.readLine(
-      "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.",
-      (number) => {
-        if (Number(number) === 1) {
-          this.gameStart();
-        } else {
-          Console.close();
-        }
+    Console.readLine(GAME_RESTART_SENTENCE, (number) => {
+      if (Number(number) === 1) {
+        this.gameStart();
+      } else {
+        Console.close();
       }
-    );
+    });
   }
 
   compareNumbers(answer, playerInputValue) {
@@ -65,12 +65,12 @@ class BaseBallGame {
 
     if (answer === playerInputValue) {
       Console.print(`3${STRIKE}`);
-      Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+      Console.print(GAME_END_SENTENCE);
       this.gameReStart();
       return;
     }
     if (deduplicatedAllNumberList.length === THREE_DIGISTS * 2) {
-      Console.print("낫싱");
+      Console.print(NOTHING);
       return;
     }
 
