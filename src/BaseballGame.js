@@ -1,16 +1,13 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const { THREE_DIGISTS, BASEBALL, GAME_SENTENCE } = require("./constants");
+const { removeListDuplication } = require("./utils");
 const Validation = require("./Validation");
 
 class BaseBallGame {
   answer;
   playerInputValue;
 
-  constructor() {
-    this.gameStart();
-  }
-
-  gameStart() {
+  start() {
     this.createAnswer();
     this.getPlayerInputValue();
   }
@@ -38,10 +35,10 @@ class BaseBallGame {
     });
   }
 
-  gameReStart() {
+  restart() {
     Console.readLine(GAME_SENTENCE.RESTART, (number) => {
       if (Number(number) === 1) {
-        this.gameStart();
+        this.start();
       } else {
         Console.close();
       }
@@ -52,15 +49,14 @@ class BaseBallGame {
     const answerNumberList = String(answer).split("");
     const playerNumberList = String(playerInputValue).split("");
     const allNumberList = [...answerNumberList, ...playerNumberList];
-    const deduplicatedAllNumberList = [...new Set(allNumberList)];
 
     if (answer === playerInputValue) {
       Console.print(`3${BASEBALL.STRIKE}`);
       Console.print(GAME_SENTENCE.END);
-      this.gameReStart();
+      this.restart();
       return;
     }
-    if (deduplicatedAllNumberList.length === THREE_DIGISTS * 2) {
+    if (removeListDuplication(allNumberList).length === THREE_DIGISTS * 2) {
       Console.print(BASEBALL.NOTHING);
       return;
     }
@@ -83,10 +79,10 @@ class BaseBallGame {
       },
       {}
     );
-    this.makeBallStrikeSentence(baseballGameResult);
+    this.printBallStrikeSentence(baseballGameResult);
   }
 
-  makeBallStrikeSentence({ strike, ball }) {
+  printBallStrikeSentence({ strike, ball }) {
     const ballSentence = ball ? `${ball}${BASEBALL.BALL}` : "";
     const strikeSentence = strike ? `${strike}${BASEBALL.STRIKE}` : "";
     if (ball && !strike) {

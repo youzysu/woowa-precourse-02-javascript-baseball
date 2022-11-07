@@ -1,4 +1,5 @@
 const { THREE_DIGISTS } = require("./constants");
+const { removeListDuplication } = require("./utils");
 
 class Validation {
   static passAllValidationChecks(playerInputValue) {
@@ -22,7 +23,7 @@ class Validation {
   }
   static isUniqueNumbers(string) {
     const numberList = String(string).split("");
-    return [...new Set(numberList)].length === THREE_DIGISTS;
+    return removeListDuplication(numberList).length === THREE_DIGISTS;
   }
 }
 

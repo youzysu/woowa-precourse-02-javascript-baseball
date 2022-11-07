@@ -6,10 +6,11 @@ const { GAME_SENTENCE } = require("./constants");
 class App {
   play() {
     Console.print(GAME_SENTENCE.START);
-    new BaseBallGame();
+    baseballGame.start();
   }
 }
 
+const baseballGame = new BaseBallGame();
 const app = new App();
 app.play();
 module.exports = App;
