@@ -1,6 +1,6 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const { THREE_DIGISTS, BASEBALL, GAME_SENTENCE } = require("./constants");
-const { removeListDuplication } = require("./utils");
+const { removeListDuplication, throwErrorWrongInputValue } = require("./utils");
 const Validation = require("./Validation");
 
 class BaseBallGame {
@@ -39,9 +39,13 @@ class BaseBallGame {
     Console.readLine(GAME_SENTENCE.RESTART, (number) => {
       if (Number(number) === 1) {
         this.start();
-      } else {
-        Console.close();
+        return;
       }
+      if (Number(number) === 2) {
+        Console.close();
+        return;
+      }
+      throwErrorWrongInputValue();
     });
   }
 

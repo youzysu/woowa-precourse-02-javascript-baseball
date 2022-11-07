@@ -1,5 +1,5 @@
 const { THREE_DIGISTS } = require("./constants");
-const { removeListDuplication } = require("./utils");
+const { removeListDuplication, throwErrorWrongInputValue } = require("./utils");
 
 class Validation {
   static passAllValidationChecks(playerInputValue) {
@@ -11,7 +11,7 @@ class Validation {
     ) {
       return true;
     } else {
-      throw new Error("잘못된 입력값입니다.");
+      throwErrorWrongInputValue();
     }
   }
 
