@@ -22,16 +22,35 @@ describe("App class의 start() 테스트", () => {
   });
 });
 
-test("임의의 3자리 숫자 선택 테스트", () => {
+describe("game.getAnswer() 테스트", () => {
   const numbersArr = new Array(5);
   for (let i = 0; i < numbersArr.length; i++) {
     numbersArr[i] = game.getAnswer();
   }
 
-  numbersArr.forEach((number) => {
-    const numberArr = [...new Set([...(number + "")])];
-    expect(numberArr).toHaveLength(3);
-    expect(numberArr).not.toEqual(expect.arrayContaining(["0"]));
+  test("3자리의 숫자인지 확인하는 테스트", () => {
+    numbersArr.forEach((number) => {
+      expect(number + "").toHaveLength(3);
+    });
+  });
+
+  test("0이 포함되어 있지 않은지 확인하는 테스트", () => {
+    numbersArr.forEach((number) => {
+      expect(number + "").toEqual(expect.not.stringContaining("0"));
+    });
+  });
+
+  test("중복된 숫자가 있는지 확인하는 테스트", () => {
+    numbersArr.forEach((number) => {
+      const numberArr = [...new Set([...(number + "")])];
+      expect(numberArr).toHaveLength(3);
+    });
+  });
+
+  test("숫자로만 이루어져 있는지 확인하기", () => {
+    numbersArr.forEach((number) => {
+      expect(number + "").not.toBeNaN();
+    });
   });
 });
 
