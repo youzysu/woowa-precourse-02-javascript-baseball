@@ -14,6 +14,12 @@ describe("구현 기능 목록 테스트", () => {
       "잘못된 값을 입력하셨습니다. 게임을 종료합니다."
     );
   });
+  test("예외처리", () => {
+    const app = new App();
+    expect(() => app.validCheck([1, 1, 3])).toThrow(
+      "잘못된 값을 입력하셨습니다. 게임을 종료합니다."
+    );
+  });
 
   test("모두 같은자리 같은숫자일 때", () => {
     const app = new App();
