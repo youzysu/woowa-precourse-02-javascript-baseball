@@ -67,6 +67,12 @@ class App {
     if (userInputNumber.length != 3) {
       throw GAME_RESULT.ERROR;
     }
+
+    let removeDuplication = new Set(userInputNumber);
+    removeDuplication = [...removeDuplication];
+    if (removeDuplication.length != 3) {
+      throw GAME_RESULT.ERROR;
+    }
   }
 
   ballStrikeCounter(userInputNumber, computerNumber) {
