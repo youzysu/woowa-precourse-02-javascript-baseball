@@ -4,7 +4,9 @@ const { BASEBALL, GAME_SENTENCE } = require("../src/constants");
 const baseballGame = new BaseBallGame();
 
 const getLogSpy = () => {
-  return jest.spyOn(MissionUtils.Console, "print");
+  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  logSpy.mockClear();
+  return logSpy;
 };
 
 describe("정답과 플레이어 입력값을 비교", () => {
@@ -25,33 +27,22 @@ describe("정답과 플레이어 입력값을 비교", () => {
     expect(logSpy).toHaveBeenCalledWith(BASEBALL.NOTHING);
   });
 
-  const logCalledTimes = 3;
-
   test("볼과 스트라이크", () => {
     const logSpy = getLogSpy();
 
     baseballGame.compareAnswers(713, 145);
-    expect(logSpy).toHaveBeenNthCalledWith(
-      logCalledTimes + 1,
-      `1${BASEBALL.BALL}`
-    );
+    expect(logSpy).toHaveBeenNthCalledWith(1, `1${BASEBALL.BALL}`);
 
     baseballGame.compareAnswers(713, 671);
-    expect(logSpy).toHaveBeenNthCalledWith(
-      logCalledTimes + 2,
-      `2${BASEBALL.BALL}`
-    );
+    expect(logSpy).toHaveBeenNthCalledWith(2, `2${BASEBALL.BALL}`);
 
     baseballGame.compareAnswers(713, 123);
     expect(logSpy).toHaveBeenNthCalledWith(
-      logCalledTimes + 3,
+      3,
       `1${BASEBALL.BALL} 1${BASEBALL.STRIKE}`
     );
 
     baseballGame.compareAnswers(713, 216);
-    expect(logSpy).toHaveBeenNthCalledWith(
-      logCalledTimes + 4,
-      `1${BASEBALL.STRIKE}`
-    );
+    expect(logSpy).toHaveBeenNthCalledWith(4, `1${BASEBALL.STRIKE}`);
   });
 });
