@@ -163,6 +163,6 @@
 - [x] test: App class의 start() 테스트 코드 수정하기
 - [x] test: game.getAnswer() 테스트 코드 수정 및 추가하기
 - [x] test: game.getResult() 테스트 코드 수정 및 추가하기
-- [ ] test: game.printResult() 테스트 코드 수정하기
+- [x] test: game.printResult() 테스트 코드 수정하기
 - [ ] test: validation.playerInput() 테스트 코드 수정하기
 - [ ] test: validation.option() 테스트 코드 수정하기
