@@ -1,7 +1,22 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const BaseBallGame = require("../src/BaseballGame");
 const { BASEBALL, GAME_SENTENCE } = require("../src/constants");
-const baseballGame = new BaseBallGame();
+
+const mockQuestions = (answers) => {
+  MissionUtils.Console.readLine = jest.fn();
+  answers.reduce((acc, input) => {
+    return acc.mockImplementationOnce((question, callback) => {
+      callback(input);
+    });
+  }, MissionUtils.Console.readLine);
+};
+
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickNumberInRange = jest.fn();
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, MissionUtils.Random.pickNumberInRange);
+};
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(MissionUtils.Console, "print");
@@ -11,10 +26,16 @@ const getLogSpy = () => {
 
 describe("정답과 플레이어 입력값을 비교", () => {
   test("3개의 숫자를 모두 맞칠 경우", () => {
-    const messages = [`3${BASEBALL.STRIKE}`, GAME_SENTENCE.END];
+    const randoms = [7, 1, 3];
+    const answers = ["713"];
     const logSpy = getLogSpy();
+    const messages = [`3${BASEBALL.STRIKE}`, GAME_SENTENCE.END];
 
-    baseballGame.compareAnswers(713, 713);
+    mockRandoms(randoms);
+    mockQuestions(answers);
+
+    const baseballGame = new BaseBallGame();
+    baseballGame.start();
 
     messages.forEach((message) => {
       expect(logSpy).toHaveBeenCalledWith(message);
@@ -22,27 +43,33 @@ describe("정답과 플레이어 입력값을 비교", () => {
   });
 
   test("하나도 없는 경우", () => {
+    const randoms = [7, 1, 3];
+    const answers = ["245"];
     const logSpy = getLogSpy();
-    baseballGame.compareAnswers(713, 245);
+
+    mockRandoms(randoms);
+    mockQuestions(answers);
+
+    const baseballGame = new BaseBallGame();
+    baseballGame.start();
+
     expect(logSpy).toHaveBeenCalledWith(BASEBALL.NOTHING);
   });
 
   test("볼과 스트라이크", () => {
+    const randoms = [7, 1, 3];
+    const answers = ["145", "671", "123", "216"];
     const logSpy = getLogSpy();
+    const messages = ["1볼", "2볼", "1볼 1스트라이크", "1스트라이크"];
 
-    baseballGame.compareAnswers(713, 145);
-    expect(logSpy).toHaveBeenNthCalledWith(1, `1${BASEBALL.BALL}`);
+    mockRandoms(randoms);
+    mockQuestions(answers);
 
-    baseballGame.compareAnswers(713, 671);
-    expect(logSpy).toHaveBeenNthCalledWith(2, `2${BASEBALL.BALL}`);
+    const baseballGame = new BaseBallGame();
+    baseballGame.start();
 
-    baseballGame.compareAnswers(713, 123);
-    expect(logSpy).toHaveBeenNthCalledWith(
-      3,
-      `1${BASEBALL.BALL} 1${BASEBALL.STRIKE}`
-    );
-
-    baseballGame.compareAnswers(713, 216);
-    expect(logSpy).toHaveBeenNthCalledWith(4, `1${BASEBALL.STRIKE}`);
+    messages.forEach((message) => {
+      expect(logSpy).toHaveBeenCalledWith(message);
+    });
   });
 });
