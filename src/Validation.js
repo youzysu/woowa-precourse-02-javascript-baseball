@@ -1,3 +1,5 @@
+const { ERROR } = require('../src/Materials');
+
 class Validation {
   isValidInput(userInput) {
     this.typeValidity(userInput);
@@ -7,20 +9,20 @@ class Validation {
 
   typeValidity(userInput) {
     if (!Number.isInteger(Number(userInput))) {
-      throw new Error('숫자만 입력해주세요.');
+      throw new Error(ERROR.TYPE);
     }
   }
 
   lengthValidity(userInput) {
     if (userInput.length !== 3) {
-      throw new Error('3자리 숫자를 입력해주세요.');
+      throw new Error(ERROR.LENGTH);
     }
   }
 
   isDuplicate(userInput) {
     const removedSame = new Set(userInput);
     if (userInput.length !== removedSame.size) {
-      throw new Error('중복된 숫자가 있습니다.');
+      throw new Error(ERROR.DUPLICATE);
     }
   }
 }
