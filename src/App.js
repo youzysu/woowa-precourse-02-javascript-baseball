@@ -14,7 +14,7 @@ class App {
   }
 
   progress(answer) {
-    Console.readLine(MESSAGE.INPUT, (input) => {
+    Console.readLine(MESSAGE.INPUT_NUMBER, (input) => {
       if (!validation.playerInput(input)) game.quitWithException();
 
       const { ball, strike } = game.getResult(answer, input);
@@ -27,7 +27,7 @@ class App {
   }
 
   end() {
-    Console.readLine(MESSAGE.END, (input) => {
+    Console.readLine(MESSAGE.INPUT_OPTION, (input) => {
       if (!validation.option(input)) game.quitWithException();
 
       if (input === OPTION.RESTART) return this.restart();
