@@ -1,6 +1,6 @@
 const App = require('../src/App');
-const { MESSAGE, OPTION, ERROR } = require('../src/Materials');
-const { Random, Console } = require('@woowacourse/mission-utils');
+const { MESSAGE } = require('../src/Materials');
+const { Console } = require('@woowacourse/mission-utils');
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(Console, 'print');
