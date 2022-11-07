@@ -1,7 +1,7 @@
 const { describe, expect, test } = require("@jest/globals");
 const validation = require("../src/libs/validation");
 
-describe.only("validation.playerInput() 테스트", () => {
+describe("validation.playerInput() 테스트", () => {
   test.each([["123"], ["456"], ["258"]])(
     "validation.playerInput(%s) => true",
     (input) => {
@@ -38,21 +38,18 @@ describe.only("validation.playerInput() 테스트", () => {
   );
 });
 
-describe("유효성 테스트", () => {
-  test("게임 종료 후 답변 유효성 테스트", () => {
-    const resultArr = [
-      validation.option("1"),
-      validation.option("2"),
-      validation.option("0"),
-      validation.option(1),
-      validation.option(2),
-      validation.option("안녕하세요."),
-    ];
+describe("validation.option() 테스트", () => {
+  test.each([["1"], ["2"]])(
+    "validation.option(&s) => 올바른 입력 이므로 true를 반환",
+    (input) => {
+      expect(validation.option(input)).toBeTruthy();
+    }
+  );
 
-    const answerArr = [true, true, false, false, false, false];
-
-    resultArr.forEach((result, idx) => {
-      expect(result).toEqual(answerArr[idx]);
-    });
-  });
+  test.each([["0"], [""], ["안녕하세요"], ["!!"], ["3"], ["123"]])(
+    "validation.option(&s) => 1, 2가 아닌 입력값은 false를 반환",
+    (input) => {
+      expect(validation.option(input)).toBeFalsy();
+    }
+  );
 });
