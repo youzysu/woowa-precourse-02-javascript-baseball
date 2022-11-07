@@ -18,10 +18,9 @@ const validation = {
   },
 
   option: (input) => {
-    let isValid;
+    let isValid = false;
 
-    if (input !== OPTION.RESTART && input !== OPTION.EXIT) isValid = false;
-    else isValid = true;
+    if (input === OPTION.RESTART || input === OPTION.EXIT) isValid = true;
 
     return isValid;
   },

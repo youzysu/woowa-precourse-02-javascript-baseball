@@ -154,7 +154,7 @@
   - game.quitWithException() 메서드는 에러를 생성한 후 종료를 시키기 때문에 반환하지 않는다.
   - App 클래스의 progress() 메서드와 end() 메서드는 App의 메서드를 반환한다.
   - game.printResult() 메서드는 아무런 값을 반환하지 않는다.
-- [ ] refactor: validation.option() else 제거하기
+- [x] refactor: validation.option() else 제거하기
 
 ---
 
