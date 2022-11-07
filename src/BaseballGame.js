@@ -1,4 +1,5 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
+const { BallStrike } = require("./BallStrike");
 const { THREE_DIGISTS, BASEBALL, GAME_SENTENCE } = require("./constants");
 const { removeListDuplication, throwErrorWrongInputValue } = require("./utils");
 const Validation = require("./Validation");
@@ -65,39 +66,8 @@ class BaseBallGame {
       return;
     }
 
-    const baseballGameResult = playerNumbers.reduce(
-      (baseballGameResult, playerNumber, playerNumberIndex) => {
-        const answerNumberIndex = answerNumbers.indexOf(playerNumber);
-        if (answerNumberIndex !== -1) {
-          if (answerNumberIndex === playerNumberIndex) {
-            baseballGameResult["strike"]
-              ? baseballGameResult["strike"]++
-              : (baseballGameResult["strike"] = 1);
-          } else {
-            baseballGameResult["ball"]
-              ? baseballGameResult["ball"]++
-              : (baseballGameResult["ball"] = 1);
-          }
-        }
-        return baseballGameResult;
-      },
-      {}
-    );
-    this.printBallStrikeSentence(baseballGameResult);
-  }
-
-  printBallStrikeSentence({ strike, ball }) {
-    const ballSentence = ball ? `${ball}${BASEBALL.BALL}` : "";
-    const strikeSentence = strike ? `${strike}${BASEBALL.STRIKE}` : "";
-    if (ball && !strike) {
-      Console.print(ballSentence);
-      return;
-    }
-    if (strike && !ball) {
-      Console.print(strikeSentence);
-      return;
-    }
-    Console.print(`${ballSentence} ${strikeSentence}`);
+    const ballStrikeCount = BallStrike.getCount(playerNumbers, answerNumbers);
+    BallStrike.printResultSentence(ballStrikeCount);
   }
 }
 
