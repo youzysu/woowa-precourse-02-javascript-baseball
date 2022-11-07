@@ -30,7 +30,7 @@ class BaseBallGame {
       if (Validation.passAllValidationChecks(playerInputValue)) {
         this.playerInputValue = Number(playerInputValue);
       }
-      this.compareAnswers(this.answer, this.playerInputValue);
+      this.compareAnswers();
       this.getPlayerInputValue();
     });
   }
@@ -49,12 +49,12 @@ class BaseBallGame {
     });
   }
 
-  compareAnswers(answer, playerInputValue) {
-    const answerNumbers = String(answer).split("");
-    const playerNumbers = String(playerInputValue).split("");
+  compareAnswers() {
+    const answerNumbers = String(this.answer).split("");
+    const playerNumbers = String(this.playerInputValue).split("");
     const allNumbers = [...answerNumbers, ...playerNumbers];
 
-    if (answer === playerInputValue) {
+    if (this.answer === this.playerInputValue) {
       Console.print(`3${BASEBALL.STRIKE}`);
       Console.print(GAME_SENTENCE.END);
       this.restart();
