@@ -1,11 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
 const BaseBallGame = require("./BaseballGame");
 
-const { GAME_START_SENTENCE } = require("./constants");
+const { GAME_SENTENCE } = require("./constants");
 
 class App {
   play() {
-    Console.print(GAME_START_SENTENCE);
+    Console.print(GAME_SENTENCE.START);
     new BaseBallGame();
   }
 }

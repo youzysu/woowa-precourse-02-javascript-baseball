@@ -1,11 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const BaseBallGame = require("../src/BaseballGame");
-const {
-  STRIKE,
-  NOTHING,
-  GAME_END_SENTENCE,
-  BALL,
-} = require("../src/constants");
+const { BASEBALL, GAME_SENTENCE } = require("../src/constants");
 const baseballGame = new BaseBallGame();
 
 const getLogSpy = () => {
@@ -14,7 +9,7 @@ const getLogSpy = () => {
 
 describe("정답과 플레이어 입력값을 비교", () => {
   test("3개의 숫자를 모두 맞칠 경우", () => {
-    const messages = [`3${STRIKE}`, GAME_END_SENTENCE];
+    const messages = [`3${BASEBALL.STRIKE}`, GAME_SENTENCE.END];
     const logSpy = getLogSpy();
 
     baseballGame.compareAnswers(713, 713);
@@ -27,7 +22,7 @@ describe("정답과 플레이어 입력값을 비교", () => {
   test("하나도 없는 경우", () => {
     const logSpy = getLogSpy();
     baseballGame.compareAnswers(713, 245);
-    expect(logSpy).toHaveBeenCalledWith(NOTHING);
+    expect(logSpy).toHaveBeenCalledWith(BASEBALL.NOTHING);
   });
 
   const logCalledTimes = 3;
@@ -36,18 +31,27 @@ describe("정답과 플레이어 입력값을 비교", () => {
     const logSpy = getLogSpy();
 
     baseballGame.compareAnswers(713, 145);
-    expect(logSpy).toHaveBeenNthCalledWith(logCalledTimes + 1, `1${BALL}`);
+    expect(logSpy).toHaveBeenNthCalledWith(
+      logCalledTimes + 1,
+      `1${BASEBALL.BALL}`
+    );
 
     baseballGame.compareAnswers(713, 671);
-    expect(logSpy).toHaveBeenNthCalledWith(logCalledTimes + 2, `2${BALL}`);
+    expect(logSpy).toHaveBeenNthCalledWith(
+      logCalledTimes + 2,
+      `2${BASEBALL.BALL}`
+    );
 
     baseballGame.compareAnswers(713, 123);
     expect(logSpy).toHaveBeenNthCalledWith(
       logCalledTimes + 3,
-      `1${BALL} 1${STRIKE}`
+      `1${BASEBALL.BALL} 1${BASEBALL.STRIKE}`
     );
 
     baseballGame.compareAnswers(713, 216);
-    expect(logSpy).toHaveBeenNthCalledWith(logCalledTimes + 4, `1${STRIKE}`);
+    expect(logSpy).toHaveBeenNthCalledWith(
+      logCalledTimes + 4,
+      `1${BASEBALL.STRIKE}`
+    );
   });
 });

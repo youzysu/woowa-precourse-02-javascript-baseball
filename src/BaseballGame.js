@@ -1,14 +1,5 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-
-const {
-  PLAYER_INPUT_SENTENCE,
-  THREE_DIGISTS,
-  BALL,
-  STRIKE,
-  NOTHING,
-  GAME_END_SENTENCE,
-  GAME_RESTART_SENTENCE,
-} = require("./constants");
+const { THREE_DIGISTS, BASEBALL, GAME_SENTENCE } = require("./constants");
 const Validation = require("./Validation");
 
 class BaseBallGame {
@@ -36,7 +27,7 @@ class BaseBallGame {
   }
 
   getPlayerInputValue() {
-    Console.readLine(PLAYER_INPUT_SENTENCE, (playerInputValue) => {
+    Console.readLine(GAME_SENTENCE.PLAYER_INPUT, (playerInputValue) => {
       console.log(this.answer, "정답");
       console.log(playerInputValue, "플레이어 입력값");
       if (Validation.passAllValidationChecks(playerInputValue)) {
@@ -48,7 +39,7 @@ class BaseBallGame {
   }
 
   gameReStart() {
-    Console.readLine(GAME_RESTART_SENTENCE, (number) => {
+    Console.readLine(GAME_SENTENCE.RESTART, (number) => {
       if (Number(number) === 1) {
         this.gameStart();
       } else {
@@ -64,13 +55,13 @@ class BaseBallGame {
     const deduplicatedAllNumberList = [...new Set(allNumberList)];
 
     if (answer === playerInputValue) {
-      Console.print(`3${STRIKE}`);
-      Console.print(GAME_END_SENTENCE);
+      Console.print(`3${BASEBALL.STRIKE}`);
+      Console.print(GAME_SENTENCE.END);
       this.gameReStart();
       return;
     }
     if (deduplicatedAllNumberList.length === THREE_DIGISTS * 2) {
-      Console.print(NOTHING);
+      Console.print(BASEBALL.NOTHING);
       return;
     }
 
@@ -96,8 +87,8 @@ class BaseBallGame {
   }
 
   makeBallStrikeSentence({ strike, ball }) {
-    const ballSentence = ball ? `${ball}${BALL}` : "";
-    const strikeSentence = strike ? `${strike}${STRIKE}` : "";
+    const ballSentence = ball ? `${ball}${BASEBALL.BALL}` : "";
+    const strikeSentence = strike ? `${strike}${BASEBALL.STRIKE}` : "";
     if (ball && !strike) {
       Console.print(ballSentence);
       return;
