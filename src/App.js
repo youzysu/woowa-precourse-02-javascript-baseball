@@ -3,6 +3,7 @@ const {
   RANGE_OF_COMPUTER_NUMBER,
   GAME_GUIDE_MESSAGE,
   GAME_RESULT,
+  RESPONSE,
 } = require("./Constant");
 
 class App {
@@ -53,24 +54,24 @@ class App {
     MissionUtils.Console.readLine(
       GAME_GUIDE_MESSAGE.NEW_OR_CLOSE_MESSAGE,
       (answer) => {
-        if (answer == "1") {
+        if (answer == RESPONSE.RESTART) {
           this.play();
-        } else if (answer == "2") {
+        } else if (answer == RESPONSE.FINISH) {
           MissionUtils.Console.close();
         }
       }
     );
   }
 
-  validCheck(useInputNumber) {
-    if (useInputNumber.length != 3) {
+  validCheck(userInputNumber) {
+    if (userInputNumber.length != 3) {
       throw GAME_RESULT.ERROR;
     }
   }
 
-  ballStrikeCounter(useInputNumber, computerNumber) {
+  ballStrikeCounter(userInputNumber, computerNumber) {
     let ballStrikeCount = [0, 0];
-    useInputNumber.forEach((item, index) => {
+    userInputNumber.forEach((item, index) => {
       if (item == computerNumber[index]) {
         ballStrikeCount[1] += 1;
       } else if (computerNumber.includes(Number(item))) {

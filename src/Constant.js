@@ -18,4 +18,14 @@ const GAME_RESULT = {
   ERROR: "잘못된 값을 입력하셨습니다. 게임을 종료합니다.",
 };
 
-module.exports = { RANGE_OF_COMPUTER_NUMBER, GAME_GUIDE_MESSAGE, GAME_RESULT };
+const RESPONSE = {
+  RESTART: "1",
+  FINISH: "2",
+};
+
+module.exports = {
+  RANGE_OF_COMPUTER_NUMBER,
+  GAME_GUIDE_MESSAGE,
+  GAME_RESULT,
+  RESPONSE,
+};
