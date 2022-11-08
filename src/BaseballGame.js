@@ -1,5 +1,5 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const { BallStrike } = require("./BallStrike");
+const { ballStrike } = require("./BallStrike");
 const { COMMAND, THREE_DIGISTS, COUNT, GAME_SENTENCE } = require("./constants");
 const { removeListDuplication, throwErrorWrongInputValue } = require("./utils");
 const Validation = require("./Validation");
@@ -66,8 +66,8 @@ class BaseBallGame {
       return;
     }
 
-    const ballStrikeCount = BallStrike.getCount(playerNumbers, answerNumbers);
-    BallStrike.printResultSentence(ballStrikeCount);
+    ballStrike.count = { playerNumbers, answerNumbers };
+    ballStrike.printResultSentence();
   }
 }
 

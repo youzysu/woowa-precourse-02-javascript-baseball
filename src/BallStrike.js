@@ -2,8 +2,10 @@ const { Console } = require("@woowacourse/mission-utils");
 const { COUNT } = require("./constants");
 
 class BallStrike {
-  static getCount(playerNumbers, answerNumbers) {
-    const ballStrikeCount = playerNumbers.reduce(
+  _count;
+
+  set count({ playerNumbers, answerNumbers }) {
+    const ballStirkeCount = playerNumbers.reduce(
       (ballStrikeCount, playerNumber, playerNumberIndex) => {
         const answerNumberIndex = answerNumbers.indexOf(playerNumber);
         if (answerNumberIndex !== -1) {
@@ -21,10 +23,11 @@ class BallStrike {
       },
       {}
     );
-    return ballStrikeCount;
+    this._count = ballStirkeCount;
   }
 
-  static printResultSentence({ ball, strike }) {
+  printResultSentence() {
+    const { ball, strike } = this._count;
     const ballSentence = ball ? COUNT.BALL(ball) : "";
     const strikeSentence = strike ? COUNT.STRIKE(strike) : "";
     if (ball && !strike) {
@@ -39,4 +42,5 @@ class BallStrike {
   }
 }
 
-exports.BallStrike = BallStrike;
+const ballStrike = new BallStrike();
+exports.ballStrike = ballStrike;
