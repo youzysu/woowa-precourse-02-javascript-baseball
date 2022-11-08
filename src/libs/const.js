@@ -6,8 +6,9 @@ const MESSAGE = {
 };
 
 const ERROR_MESSAGE = {
-  ANSWER: "중복되지 않는 1~9 사이의 숫자 3개를 입력해야 합니다.",
-  OPTION: "1 또는 2를 입력해야 합니다.",
+  ANSWER:
+    "중복되지 않는 1~9 사이의 숫자 3개를 입력하지 않아 애플리케이션이 종료됩니다.",
+  OPTION: "1 또는 2를 입력하지 않아 애플리케이션이 종료됩니다.",
 };
 
 const OPTION = {
