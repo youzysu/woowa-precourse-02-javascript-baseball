@@ -43,8 +43,8 @@ const game = {
     if (strikeCount === 3) Console.print(MESSAGE.SUCCESS);
   },
 
-  quitWithException: () => {
-    throw new Error(MESSAGE.ERROR);
+  quitWithException: (error) => {
+    throw new Error(error);
   },
 };
 
