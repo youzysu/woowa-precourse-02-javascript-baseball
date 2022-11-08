@@ -12,9 +12,9 @@ const GAME_SENTENCE = {
   PLAYER_INPUT: "숫자를 입력해주세요 : ",
 };
 
-const BASEBALL = {
-  STRIKE: "스트라이크",
-  BALL: "볼",
+const COUNT = {
+  STRIKE: (count) => `${count}스트라이크`,
+  BALL: (count) => `${count}볼`,
   NOTHING: "낫싱",
 };
 
@@ -22,5 +22,5 @@ module.exports = {
   COMMAND,
   THREE_DIGISTS,
   GAME_SENTENCE,
-  BASEBALL,
+  COUNT,
 };

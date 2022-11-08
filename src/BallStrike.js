@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { BASEBALL } = require("./constants");
+const { COUNT } = require("./constants");
 
 class BallStrike {
   static getCount(playerNumbers, answerNumbers) {
@@ -25,8 +25,8 @@ class BallStrike {
   }
 
   static printResultSentence({ ball, strike }) {
-    const ballSentence = ball ? `${ball}${BASEBALL.BALL}` : "";
-    const strikeSentence = strike ? `${strike}${BASEBALL.STRIKE}` : "";
+    const ballSentence = ball ? COUNT.BALL(ball) : "";
+    const strikeSentence = strike ? COUNT.STRIKE(strike) : "";
     if (ball && !strike) {
       Console.print(ballSentence);
       return;

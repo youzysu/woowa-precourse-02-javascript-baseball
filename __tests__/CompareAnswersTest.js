@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const baseballGame = require("../src/BaseballGame");
-const { BASEBALL, GAME_SENTENCE } = require("../src/constants");
+const { COUNT, GAME_SENTENCE } = require("../src/constants");
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -29,7 +29,7 @@ describe("정답과 플레이어 입력값을 비교", () => {
     const randoms = [7, 1, 3];
     const answers = ["713"];
     const logSpy = getLogSpy();
-    const messages = [`3${BASEBALL.STRIKE}`, GAME_SENTENCE.END];
+    const messages = [COUNT.STRIKE(3), GAME_SENTENCE.END];
 
     mockRandoms(randoms);
     mockQuestions(answers);
@@ -51,7 +51,7 @@ describe("정답과 플레이어 입력값을 비교", () => {
 
     baseballGame.start();
 
-    expect(logSpy).toHaveBeenCalledWith(BASEBALL.NOTHING);
+    expect(logSpy).toHaveBeenCalledWith(COUNT.NOTHING);
   });
 
   test("볼과 스트라이크", () => {
