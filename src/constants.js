@@ -13,6 +13,8 @@ const BASEBALL = {
   NOTHING: "낫싱",
 };
 
-exports.THREE_DIGISTS = THREE_DIGISTS;
-exports.GAME_SENTENCE = GAME_SENTENCE;
-exports.BASEBALL = BASEBALL;
+module.exports = {
+  THREE_DIGISTS,
+  GAME_SENTENCE,
+  BASEBALL,
+};
