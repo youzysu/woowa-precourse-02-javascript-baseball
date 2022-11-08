@@ -17,6 +17,8 @@ const OUTPUT = {
   STRIKE: "스트라이크",
 };
 
-exports.MESSAGE = MESSAGE;
-exports.OPTION = OPTION;
-exports.OUTPUT = OUTPUT;
+module.exports = {
+  MESSAGE,
+  OPTION,
+  OUTPUT,
+};

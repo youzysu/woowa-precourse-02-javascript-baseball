@@ -1,11 +1,11 @@
 const { OPTION } = require("./const");
 
 const validation = {
-  playerInput: (input) => {
-    const isOnlyNumber = !isNaN(input);
-    const isThreeLength = input.length === 3;
-    const isNotIncludesOne = !input.includes("0");
-    const isNotOverlap = [...new Set([...(input + "")])].length === 3;
+  checkPlayerAnswer: (userAnswer) => {
+    const isOnlyNumber = !isNaN(userAnswer);
+    const isThreeLength = userAnswer.length === 3;
+    const isNotIncludesOne = !userAnswer.includes("0");
+    const isNotOverlap = [...new Set([...(userAnswer + "")])].length === 3;
 
     const validationList = [
       isOnlyNumber,
@@ -17,10 +17,10 @@ const validation = {
     return validationList.every((item) => item);
   },
 
-  option: (input) => {
+  checkPlayerOption: (option) => {
     let isValid = false;
 
-    if (input === OPTION.RESTART || input === OPTION.EXIT) isValid = true;
+    if (option === OPTION.RESTART || option === OPTION.EXIT) isValid = true;
 
     return isValid;
   },

@@ -14,33 +14,33 @@ const game = {
 
   getAnswer: () => game.setAnswer(),
 
-  getResult: (answer, input) => {
-    let ball = 0;
-    let strike = 0;
+  getResult: (computerAnswer, playerAnswer) => {
+    let ballCount = 0;
+    let strikeCount = 0;
 
-    [...input].forEach((item, idx) => {
-      if (![...(answer + "")].includes(item)) return;
+    [...playerAnswer].forEach((number, idx) => {
+      if (![...(computerAnswer + "")].includes(number)) return;
 
-      if ((answer + "")[idx] === item) strike++;
-      else ball++;
+      if ((computerAnswer + "")[idx] === number) strikeCount++;
+      else ballCount++;
     });
 
-    return { ball, strike };
+    return { ballCount, strikeCount };
   },
 
-  printResult: (ball, strike) => {
-    if (ball === 0 && strike === 0) {
+  printResult: (ballCount, strikeCount) => {
+    if (ballCount === 0 && strikeCount === 0) {
       Console.print(OUTPUT.NOTHING);
       return;
     }
 
-    const ballPrint = ball !== 0 ? `${ball}${OUTPUT.BALL} ` : "";
-    const strikePrint = strike !== 0 ? `${strike}${OUTPUT.STRIKE}` : "";
-    const resultPrint = `${ballPrint}${strikePrint}`;
+    const ballCountPrint = ballCount !== 0 ? `${ballCount}${OUTPUT.BALL} ` : "";
+    const strikeCountPrint =
+      strikeCount !== 0 ? `${strikeCount}${OUTPUT.STRIKE}` : "";
 
-    Console.print(resultPrint);
+    Console.print(ballCountPrint + strikeCountPrint);
 
-    if (strike === 3) Console.print(MESSAGE.SUCCESS);
+    if (strikeCount === 3) Console.print(MESSAGE.SUCCESS);
   },
 
   quitWithException: () => {

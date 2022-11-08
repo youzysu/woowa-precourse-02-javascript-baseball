@@ -64,12 +64,12 @@ describe("game.getAnswer() 테스트", () => {
 });
 
 describe.each([
-  [438, "421", { ball: 0, strike: 1 }],
-  [438, "253", { ball: 1, strike: 0 }],
-  [438, "328", { ball: 1, strike: 1 }],
-  [438, "843", { ball: 3, strike: 0 }],
-  [438, "179", { ball: 0, strike: 0 }],
-  [769, "769", { ball: 0, strike: 3 }],
+  [438, "421", { ballCount: 0, strikeCount: 1 }],
+  [438, "253", { ballCount: 1, strikeCount: 0 }],
+  [438, "328", { ballCount: 1, strikeCount: 1 }],
+  [438, "843", { ballCount: 3, strikeCount: 0 }],
+  [438, "179", { ballCount: 0, strikeCount: 0 }],
+  [769, "769", { ballCount: 0, strikeCount: 3 }],
 ])("game.getResult(%d, %s) 테스트", (answer, input, expected) => {
   test(`${expected}을 반환하는 테스트`, () => {
     expect(game.getResult(answer, input)).toEqual(expected);
@@ -77,8 +77,8 @@ describe.each([
 
   test("객체의 key로 ball과 strike를 가지는지 테스트", () => {
     const objectShape = {
-      ball: expect.any(Number),
-      strike: expect.any(Number),
+      ballCount: expect.any(Number),
+      strikeCount: expect.any(Number),
     };
 
     expect(game.getResult(answer, input)).toEqual(

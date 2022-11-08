@@ -13,24 +13,27 @@ class App {
     Console.print(MESSAGE.START);
   }
 
-  progress(answer) {
-    Console.readLine(MESSAGE.INPUT_NUMBER, (input) => {
-      if (!validation.playerInput(input)) game.quitWithException();
+  progress(computerAnswer) {
+    Console.readLine(MESSAGE.INPUT_NUMBER, (playerAnswer) => {
+      if (!validation.checkPlayerAnswer(playerAnswer)) game.quitWithException();
 
-      const { ball, strike } = game.getResult(answer, input);
-      game.printResult(ball, strike);
+      const { ballCount, strikeCount } = game.getResult(
+        computerAnswer,
+        playerAnswer
+      );
+      game.printResult(ballCount, strikeCount);
 
-      if (strike !== 3) return this.progress(answer);
+      if (strikeCount !== 3) return this.progress(computerAnswer);
 
       return this.end();
     });
   }
 
   end() {
-    Console.readLine(MESSAGE.INPUT_OPTION, (input) => {
-      if (!validation.option(input)) game.quitWithException();
+    Console.readLine(MESSAGE.INPUT_OPTION, (option) => {
+      if (!validation.checkPlayerOption(option)) game.quitWithException();
 
-      if (input === OPTION.RESTART) return this.restart();
+      if (option === OPTION.RESTART) return this.restart();
 
       return this.exit();
     });
