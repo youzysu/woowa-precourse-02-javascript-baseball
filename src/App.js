@@ -55,7 +55,7 @@ class App {
       GAME_GUIDE_MESSAGE.NEW_OR_CLOSE_MESSAGE,
       (answer) => {
         if (answer == RESPONSE.RESTART) {
-          this.play();
+          this.game();
         } else if (answer == RESPONSE.FINISH) {
           MissionUtils.Console.close();
         }
