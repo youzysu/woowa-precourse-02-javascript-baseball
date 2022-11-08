@@ -13,6 +13,7 @@ describe('숫자 야구 게임 애플리케이션 테스트', () => {
     const logSpy = getLogSpy();
     const app = new App();
     app.play();
+    Console.close();
 
     expect(logSpy).toHaveBeenCalledWith(MESSAGE.START);
   });
