@@ -1,6 +1,11 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const { BallStrike } = require("./BallStrike");
-const { THREE_DIGISTS, BASEBALL, GAME_SENTENCE } = require("./constants");
+const {
+  COMMAND,
+  THREE_DIGISTS,
+  BASEBALL,
+  GAME_SENTENCE,
+} = require("./constants");
 const { removeListDuplication, throwErrorWrongInputValue } = require("./utils");
 const Validation = require("./Validation");
 
@@ -38,11 +43,11 @@ class BaseBallGame {
 
   restart() {
     Console.readLine(GAME_SENTENCE.RESTART, (number) => {
-      if (Number(number) === 1) {
+      if (Number(number) === COMMAND.RESTART) {
         this.start();
         return;
       }
-      if (Number(number) === 2) {
+      if (Number(number) === COMMAND.END) {
         Console.close();
         return;
       }
