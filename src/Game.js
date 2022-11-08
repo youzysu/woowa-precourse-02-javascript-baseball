@@ -4,7 +4,7 @@ const { MESSAGE, OPTION, ERROR } = require('../src/Materials');
 const { Random, Console } = require('@woowacourse/mission-utils');
 
 class Game {
-  setAnswerNumber() {
+  setCorrectNumber() {
     const numbers = [];
 
     while (numbers.length < 3) {
@@ -18,22 +18,22 @@ class Game {
   }
 
   start() {
-    const answerNumber = this.setAnswerNumber();
-    this.getResult(answerNumber);
+    const correctNumber = this.setCorrectNumber();
+    this.getResult(correctNumber);
   }
 
-  getResult(answerNumber) {
+  getResult(correctNumber) {
     Console.readLine(MESSAGE.TRIAL, userInput => {
       Validation.isValidInput(userInput);
 
-      const trial = new Trial();
-      trial.getHint(userInput, answerNumber);
+      const userTrial = new Trial();
+      userTrial.getHint(userInput, correctNumber);
 
-      if (!trial.isCorrect()) {
-        this.getResult(answerNumber);
+      if (!userTrial.isCorrect()) {
+        this.getResult(correctNumber);
       }
 
-      if (trial.isCorrect()) {
+      if (userTrial.isCorrect()) {
         Console.print(MESSAGE.SUCCESS);
         this.askReplay();
       }

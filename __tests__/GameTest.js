@@ -26,22 +26,22 @@ const getLogSpy = () => {
 
 describe('1부터 9까지 서로 다른 수로 이루어진 3자리의 수 생성', () => {
   test('랜덤으로 생성된 숫자에는 0이 포함되지 않는다.', () => {
-    const answerNumber = Game.setAnswerNumber();
+    const correctNumber = Game.setCorrectNumber();
 
-    expect(answerNumber.includes(0)).toBeFalsy();
+    expect(correctNumber.includes(0)).toBeFalsy();
   });
 
   test('랜덤으로 생성된 숫자에는 중복된 숫자가 존재하지 않는다.', () => {
-    const answerNumber = Game.setAnswerNumber();
-    const removedSame = new Set(answerNumber);
+    const correctNumber = Game.setCorrectNumber();
+    const removedSame = new Set(correctNumber);
 
-    expect(answerNumber.length === removedSame.size).toBeTruthy();
+    expect(correctNumber.length === removedSame.size).toBeTruthy();
   });
 
   test('랜덤으로 생성된 숫자는 3자리 숫자이다', () => {
-    const answerNumber = Game.setAnswerNumber();
+    const correctNumber = Game.setCorrectNumber();
 
-    expect(answerNumber.length === 3).toBeTruthy();
+    expect(correctNumber.length === 3).toBeTruthy();
   });
 });
 

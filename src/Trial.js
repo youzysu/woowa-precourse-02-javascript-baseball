@@ -7,24 +7,22 @@ class Trial {
     this.ballCount = 0;
   }
 
-  counterStrikeBall(userInput, answerNumber) {
-    const userNumber = userInput
-      .split('')
-      .map(str => Number(str));
+  countStrikeBall(userInput, correctNumber) {
+    const userNumber = userInput.split('').map(str => Number(str));
 
     for (let index = 0; index < userNumber.length; index++) {
-      if (userNumber[index] === answerNumber[index]) this.strikeCount++;
+      if (userNumber[index] === correctNumber[index]) this.strikeCount++;
       if (
-        answerNumber.includes(userNumber[index]) &&
-        userNumber[index] !== answerNumber[index]
+        correctNumber.includes(userNumber[index]) &&
+        userNumber[index] !== correctNumber[index]
       )
         this.ballCount++;
     }
   }
 
-  getHint(userInput, answerNumber) {
-    this.counterStrikeBall(userInput, answerNumber)
-    
+  getHint(userInput, correctNumber) {
+    this.countStrikeBall(userInput, correctNumber);
+
     if (this.strikeCount === 0 && this.ballCount === 0) {
       Console.print(RESULT.NOTHING);
     }
@@ -35,9 +33,7 @@ class Trial {
       Console.print(`${this.strikeCount}` + RESULT.STRIKE);
     }
     if (this.strikeCount > 0 && this.ballCount > 0) {
-      Console.print(
-        `${this.ballCount}` + RESULT.BALL + ` ${this.strikeCount}` + RESULT.STRIKE
-      );
+      Console.print(`${this.ballCount}` + RESULT.BALL +` ${this.strikeCount}` + RESULT.STRIKE);
     }
   }
 
