@@ -38,10 +38,7 @@ class Trial {
   }
 
   isCorrect() {
-    if (this.strikeCount === 3) {
-      return true;
-    }
-    return false;
+    return this.strikeCount === 3 ? true : false;
   }
 }
 
