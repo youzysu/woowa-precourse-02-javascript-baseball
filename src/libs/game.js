@@ -1,5 +1,5 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
-const { MESSAGE, OUTPUT } = require("./const");
+const { Console, Random } = require('@woowacourse/mission-utils');
+const { MESSAGE, OUTPUT } = require('./const');
 
 const game = {
   setAnswer: () => {
@@ -9,7 +9,7 @@ const game = {
       if (!numberArr.includes(number)) numberArr.push(number);
     }
 
-    return Number(numberArr.join(""));
+    return Number(numberArr.join(''));
   },
 
   getAnswer: () => game.setAnswer(),
@@ -19,10 +19,10 @@ const game = {
     let strikeCount = 0;
 
     [...playerAnswer].forEach((number, idx) => {
-      if (![...(computerAnswer + "")].includes(number)) return;
+      if (![...(computerAnswer + '')].includes(number)) return;
 
-      if ((computerAnswer + "")[idx] === number) strikeCount++;
-      else ballCount++;
+      if ((computerAnswer + '')[idx] === number) strikeCount += 1;
+      else ballCount += 1;
     });
 
     return { ballCount, strikeCount };
@@ -34,9 +34,9 @@ const game = {
       return;
     }
 
-    const ballCountPrint = ballCount !== 0 ? `${ballCount}${OUTPUT.BALL} ` : "";
+    const ballCountPrint = ballCount !== 0 ? `${ballCount}${OUTPUT.BALL} ` : '';
     const strikeCountPrint =
-      strikeCount !== 0 ? `${strikeCount}${OUTPUT.STRIKE}` : "";
+      strikeCount !== 0 ? `${strikeCount}${OUTPUT.STRIKE}` : '';
 
     Console.print(ballCountPrint + strikeCountPrint);
 

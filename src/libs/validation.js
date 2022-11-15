@@ -1,16 +1,16 @@
-const { OPTION } = require("./const");
+const { OPTION } = require('./const');
 
 const validation = {
   checkPlayerAnswer: (userAnswer) => {
     const isOnlyNumber = !isNaN(userAnswer);
     const isThreeLength = userAnswer.length === 3;
-    const isNotIncludesOne = !userAnswer.includes("0");
-    const isNotOverlap = [...new Set([...(userAnswer + "")])].length === 3;
+    const isNotIncludesZero = !userAnswer.includes('0');
+    const isNotOverlap = [...new Set([...(userAnswer + '')])].length === 3;
 
     const validationList = [
       isOnlyNumber,
       isThreeLength,
-      isNotIncludesOne,
+      isNotIncludesZero,
       isNotOverlap,
     ];
 
