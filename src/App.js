@@ -33,7 +33,7 @@ class App {
   }
 
   end() {
-    Console.readLine(MESSAGE.INPUT_OPTION, (option) => {
+    InputView.readCommand((option) => {
       if (!validation.checkPlayerOption(option))
         game.quitWithException(ERROR_MESSAGE.OPTION);
 

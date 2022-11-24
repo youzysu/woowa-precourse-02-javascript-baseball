@@ -1,4 +1,4 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
+const { Random } = require('@woowacourse/mission-utils');
 const OutputView = require('../View/OutputView');
 const { MESSAGE, OUTPUT } = require('./const');
 
