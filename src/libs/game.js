@@ -1,4 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const OutputView = require('../View/OutputView');
 const { MESSAGE, OUTPUT } = require('./const');
 
 const game = {
@@ -30,7 +31,7 @@ const game = {
 
   printResult: (ballCount, strikeCount) => {
     if (ballCount === 0 && strikeCount === 0) {
-      Console.print(OUTPUT.NOTHING);
+      OutputView.printMessage(OUTPUT.NOTHING);
       return;
     }
 
@@ -38,9 +39,9 @@ const game = {
     const strikeCountPrint =
       strikeCount !== 0 ? `${strikeCount}${OUTPUT.STRIKE}` : '';
 
-    Console.print(ballCountPrint + strikeCountPrint);
+    OutputView.printMessage(ballCountPrint + strikeCountPrint);
 
-    if (strikeCount === 3) Console.print(MESSAGE.SUCCESS);
+    if (strikeCount === 3) OutputView.printMessage(MESSAGE.SUCCESS);
   },
 
   quitWithException: (error) => {

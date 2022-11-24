@@ -174,6 +174,8 @@
 ### 🍢 클래스(또는 객체) 분리하기
 
 - [ ] refactor: View를 담당하는 클래스(또는 객체) 분리하기
+  - View 폴더에서 관리한다.
+  - OutputView 클래스를 만들어 메시지 출력을 관리한다.
 - [ ] refactor: Model를 담당하는 클래스(또는 객체) 분리하기
 - [ ] refactor: Controller를 담당하는 클래스(또는 객체) 분리하기
 

@@ -1,7 +1,8 @@
-const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, OPTION, ERROR_MESSAGE } = require("./libs/const.js");
-const game = require("./libs/game.js");
-const validation = require("./libs/validation.js");
+const { Console } = require('@woowacourse/mission-utils');
+const { MESSAGE, OPTION, ERROR_MESSAGE } = require('./libs/const.js');
+const game = require('./libs/game.js');
+const validation = require('./libs/validation.js');
+const OutputView = require('./View/OutputView.js');
 
 class App {
   play() {
@@ -10,7 +11,7 @@ class App {
   }
 
   start() {
-    Console.print(MESSAGE.START);
+    OutputView.printMessage(MESSAGE.START);
   }
 
   progress(computerAnswer) {
