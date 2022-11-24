@@ -176,6 +176,7 @@
 - [ ] refactor: View를 담당하는 클래스(또는 객체) 분리하기
   - View 폴더에서 관리한다.
   - OutputView 클래스를 만들어 메시지 출력을 관리한다.
+  - InputView 클래스에서 사용자의 번호 입력 메시지 출력을 담당하는 메서드를 만든다.
 - [ ] refactor: Model를 담당하는 클래스(또는 객체) 분리하기
 - [ ] refactor: Controller를 담당하는 클래스(또는 객체) 분리하기
 

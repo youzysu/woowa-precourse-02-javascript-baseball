@@ -2,6 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE, OPTION, ERROR_MESSAGE } = require('./libs/const.js');
 const game = require('./libs/game.js');
 const validation = require('./libs/validation.js');
+const InputView = require('./View/InputView.js');
 const OutputView = require('./View/OutputView.js');
 
 class App {
@@ -15,7 +16,7 @@ class App {
   }
 
   progress(computerAnswer) {
-    Console.readLine(MESSAGE.INPUT_NUMBER, (playerAnswer) => {
+    InputView.readPlayerAnswer((playerAnswer) => {
       if (!validation.checkPlayerAnswer(playerAnswer))
         game.quitWithException(ERROR_MESSAGE.ANSWER);
 
