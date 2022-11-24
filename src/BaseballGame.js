@@ -19,13 +19,12 @@ class BaseBallGame {
       const randomNumber = Random.pickNumberInRange(1, 9);
       randomUniqueNumberList.add(randomNumber);
     }
-    this.answer = Number([...randomUniqueNumberList].join(""));
+    this.answer = Number([...randomUniqueNumberList].join("")); // 그냥 answer에 Set으로 저장해도 될 것 같은데
   }
 
   getPlayerInputValue() {
     Console.readLine(GAME_SENTENCE.PLAYER_INPUT, (playerInputValue) => {
       console.log(this.answer, "정답");
-      console.log(playerInputValue, "플레이어 입력값");
       if (Validation.passAllValidationChecks(playerInputValue)) {
         this.playerInputValue = Number(playerInputValue);
       }
