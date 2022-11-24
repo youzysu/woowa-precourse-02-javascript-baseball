@@ -14,14 +14,12 @@ class BaseBallGame {
   }
 
   createAnswer() {
-    const randomUniqueNumberList = [];
-    while (randomUniqueNumberList.length < THREE_DIGISTS) {
+    const randomUniqueNumberList = new Set();
+    while (randomUniqueNumberList.size < THREE_DIGISTS) {
       const randomNumber = Random.pickNumberInRange(1, 9);
-      if (!randomUniqueNumberList.includes(randomNumber)) {
-        randomUniqueNumberList.push(randomNumber);
-      }
+      randomUniqueNumberList.add(randomNumber);
     }
-    this.answer = Number(randomUniqueNumberList.join(""));
+    this.answer = Number([...randomUniqueNumberList].join(""));
   }
 
   getPlayerInputValue() {
