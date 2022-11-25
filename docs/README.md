@@ -183,6 +183,7 @@
     - setValue, comparePlayerAnswer, resetValue
   - Validator 클래스에서 유효성 검사를 진행한다.
 - [ ] refactor: Controller를 담당하는 클래스(또는 객체) 분리하기
+- [x] refactor: 게임 종료를 담당하는 객체를 만들어 분리하기
 
 ---
 

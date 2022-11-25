@@ -1,7 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE, OPTION, ERROR_MESSAGE } = require('./libs/const.js');
-const game = require('./libs/game.js');
-const validation = require('./libs/validation.js');
+const Quit = require('./libs/Quit.js');
 const ComputerAnswer = require('./Model/ComputerAnswer.js');
 const Validator = require('./Model/Validator.js');
 const InputView = require('./View/InputView.js');
@@ -26,7 +25,7 @@ class App {
   progress() {
     InputView.readPlayerAnswer((playerAnswer) => {
       if (!Validator.playerAnswer(playerAnswer))
-        game.quitWithException(ERROR_MESSAGE.ANSWER);
+        Quit.withException(ERROR_MESSAGE.ANSWER);
 
       const { ballCount, strikeCount } =
         this.#computerAnswer.comparePlayerAnswer(playerAnswer);
@@ -42,21 +41,17 @@ class App {
   end() {
     InputView.readCommand((option) => {
       if (!Validator.playerOption(option))
-        game.quitWithException(ERROR_MESSAGE.OPTION);
+        Quit.withException(ERROR_MESSAGE.OPTION);
 
       if (option === OPTION.RESTART) return this.restart();
 
-      return this.exit();
+      return Quit.game();
     });
   }
 
   restart() {
     this.#computerAnswer.resetValue();
     this.progress();
-  }
-
-  exit() {
-    Console.close();
   }
 }
 
