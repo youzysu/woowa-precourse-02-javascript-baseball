@@ -1,6 +1,10 @@
 const { THREE_DIGISTS, COMMAND } = require("./constants");
 
 class Validation {
+  /**
+   * 플레이어 입력값 유효성 검사
+   * @param {string} playerInputValue
+   */
   static checkPlayerInputValue(playerInputValue) {
     if (this.#isCorrectPlayerInputValue(playerInputValue)) {
       throw new Error(
@@ -9,6 +13,10 @@ class Validation {
     }
   }
 
+  /**
+   * 플레이어 게임 재시작 커멘드 입력 유효성 검사
+   * @param {string} gameCommand
+   */
   static checkGameCommnad(gameCommand) {
     if (!this.#isCorrectGameCommand(Number(gameCommand))) {
       throw new Error("1과 2중 올바른 숫자를 입력하세요");

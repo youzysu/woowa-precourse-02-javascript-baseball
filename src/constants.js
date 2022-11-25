@@ -25,12 +25,12 @@ const COUNT = {
   },
 };
 
-const exportsObject = { COMMAND, GAME_SENTENCE, COUNT };
-deepFreeze(exportsObject);
-
-module.exports = {
+const exportsObject = {
   COMMAND,
   THREE_DIGISTS,
   GAME_SENTENCE,
   COUNT,
 };
+deepFreeze(exportsObject);
+
+module.exports = exportsObject;
