@@ -1,19 +1,27 @@
 const { Random } = require("@woowacourse/mission-utils");
-const { THREE_DIGISTS } = require("./constants");
+const { THREE_DIGISTS, COUNT } = require("./constants");
 
 class BaseBallGame {
-  answer; // Number Set이라고 가정
-  playerInputValue; // Number[]라고 가정
-  count = {
-    ball: 0,
-    strike: 0,
-  };
+  /**
+   * 정답 숫자
+   * @type {Set<number>}
+   */
+  answer;
+
+  /**
+   * 플레이어 입력 숫자
+   * @type {number[]}
+   */
+  playerInputValue;
+
+  /**
+   * 볼 스트라이크 개수
+   * @type  {{ ball: number, strike: number }}
+   */
+  count = { ...COUNT.initialization };
 
   setCount() {
-    this.count = {
-      ball: 0,
-      strike: 0,
-    };
+    this.#resetCount();
     this.playerInputValue.forEach((number, index) => {
       if (!this.answer.has(number)) return;
       const answer = [...this.answer];
@@ -40,6 +48,10 @@ class BaseBallGame {
     }
     console.log(randomUniqueNumberList);
     this.answer = randomUniqueNumberList;
+  }
+
+  #resetCount() {
+    this.count = { ...COUNT.initialization };
   }
 }
 
