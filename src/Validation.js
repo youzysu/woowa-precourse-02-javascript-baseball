@@ -1,7 +1,7 @@
 const { THREE_DIGISTS, COMMAND } = require("./constants");
 
 class Validation {
-  static playerInputValue(playerInputValue) {
+  static checkPlayerInputValue(playerInputValue) {
     if (this.#isCorrectPlayerInputValue(playerInputValue)) {
       throw new Error(
         "1부터 9까지 서로 다른 수로 이루어진 3자리의 수를 입력하세요"
@@ -9,7 +9,7 @@ class Validation {
     }
   }
 
-  static gameCommnad(gameCommand) {
+  static checkGameCommnad(gameCommand) {
     if (!this.#isCorrectGameCommand(Number(gameCommand))) {
       throw new Error("1과 2중 올바른 숫자를 입력하세요");
     }

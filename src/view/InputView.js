@@ -5,14 +5,14 @@ const Validation = require("../Validation");
 const InputView = {
   readBridgeSize(callback) {
     Console.readLine(GAME_SENTENCE.PLAYER_INPUT, (threeDigistsNumber) => {
-      Validation.playerInputValue(threeDigistsNumber);
+      Validation.checkPlayerInputValue(threeDigistsNumber);
       callback(threeDigistsNumber);
     });
   },
 
   readGameCommand(callback) {
     Console.readLine(GAME_SENTENCE.RESTART, (gameCommand) => {
-      Validation.gameCommnad(gameCommand);
+      Validation.checkGameCommnad(gameCommand);
       callback(gameCommand);
     });
   },
