@@ -18,7 +18,7 @@ class BaseBallGame {
    * 볼 스트라이크 개수
    * @type  {{ ball: number, strike: number }}
    */
-  count = { ...COUNT.initialization };
+  count;
 
   setCount() {
     this.#resetCount();

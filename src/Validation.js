@@ -1,29 +1,29 @@
 const { THREE_DIGISTS } = require("./constants");
-const { removeListDuplication, throwErrorWrongInputValue } = require("./utils");
 
 class Validation {
   static passAllValidationChecks(playerInputValue) {
     if (
-      this.isThreeDigits(playerInputValue) &&
-      !this.isIncludesZero(playerInputValue) &&
-      !isNaN(playerInputValue) &&
-      this.isUniqueNumbers(playerInputValue)
+      Number.isNaN(Number(playerInputValue)) ||
+      !this.#isThreeDigits(playerInputValue) ||
+      this.#isIncludesZero(playerInputValue) ||
+      !this.#isUniqueNumbers(playerInputValue)
     ) {
-      return true;
-    } else {
-      throwErrorWrongInputValue();
+      throw new Error(
+        "1부터 9까지 서로 다른 수로 이루어진 3자리의 수를 입력하세요"
+      );
     }
   }
 
-  static isThreeDigits(string) {
-    return String(string).length === THREE_DIGISTS;
+  static #isThreeDigits(string) {
+    return string.length === THREE_DIGISTS;
   }
-  static isIncludesZero(string) {
-    return String(string).includes("0");
+  static #isIncludesZero(string) {
+    return string.includes("0");
   }
-  static isUniqueNumbers(string) {
-    const numberList = String(string).split("");
-    return removeListDuplication(numberList).length === THREE_DIGISTS;
+  static #isUniqueNumbers(string) {
+    const numberList = string.split("");
+    const uniqueNumberList = new Set(numberList);
+    return uniqueNumberList.size === THREE_DIGISTS;
   }
 }
 
