@@ -3,6 +3,7 @@ const { MESSAGE, OPTION, ERROR_MESSAGE } = require('./libs/const.js');
 const game = require('./libs/game.js');
 const validation = require('./libs/validation.js');
 const ComputerAnswer = require('./Model/ComputerAnswer.js');
+const Validator = require('./Model/Validator.js');
 const InputView = require('./View/InputView.js');
 const OutputView = require('./View/OutputView.js');
 
@@ -24,7 +25,7 @@ class App {
 
   progress() {
     InputView.readPlayerAnswer((playerAnswer) => {
-      if (!validation.checkPlayerAnswer(playerAnswer))
+      if (!Validator.playerAnswer(playerAnswer))
         game.quitWithException(ERROR_MESSAGE.ANSWER);
 
       const { ballCount, strikeCount } =
@@ -40,7 +41,7 @@ class App {
 
   end() {
     InputView.readCommand((option) => {
-      if (!validation.checkPlayerOption(option))
+      if (!Validator.playerOption(option))
         game.quitWithException(ERROR_MESSAGE.OPTION);
 
       if (option === OPTION.RESTART) return this.restart();
