@@ -5,8 +5,25 @@ const { removeListDuplication, throwErrorWrongInputValue } = require("./utils");
 const Validation = require("./Validation");
 
 class BaseBallGame {
-  answer;
-  playerInputValue;
+  answer; // Number Set이라고 가정
+  playerInputValue; // Number[]라고 가정
+  count = {
+    ball: 0,
+    strike: 0,
+  };
+
+  // 금요일은 App에 control 옮기기
+
+  setCount(playerInputValue) {
+    playerInputValue.forEach((number, index) => {
+      if (!this.answer.has(number)) return;
+      const answer = [...this.answer];
+      if (answer[index] === number) {
+        return (this.count.strike += 1);
+      }
+      this.count.ball += 1;
+    });
+  }
 
   start() {
     this.createAnswer();
