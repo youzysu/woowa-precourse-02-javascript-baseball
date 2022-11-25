@@ -16,7 +16,7 @@ class App {
   }
 
   start() {
-    this.baseballGame.createAnswer();
+    this.baseballGame.setAnswer();
 
     this.readBridgeSize();
   }

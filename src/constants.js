@@ -16,6 +16,7 @@ const COUNT = {
   STRIKE: (count) => (count ? `${count}스트라이크` : ""),
   BALL: (count) => (count ? `${count}볼` : ""),
   NOTHING: "낫싱",
+  out: 3,
   initialization: {
     ball: 0,
     strike: 0,

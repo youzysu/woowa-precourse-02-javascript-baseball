@@ -20,31 +20,25 @@ class BaseBallGame {
    */
   #count;
 
-  setCount() {
-    this.#resetCount();
-    this.#playerInputValue.forEach(this.#calculateCount);
-  }
-
-  getCount() {
-    return this.#count;
+  setAnswer() {
+    this.#answer = this.#createRandomUniqueNumberList();
   }
 
   setPlayerInputValue(playerInputValue) {
     this.#playerInputValue = playerInputValue.split("").map(Number);
   }
 
-  isAnswer() {
-    return this.#count.strike === 3;
+  setCount() {
+    this.#resetCount();
+    this.#playerInputValue.forEach(this.#calculateCount);
   }
 
-  createAnswer() {
-    const randomUniqueNumberList = new Set();
-    while (randomUniqueNumberList.size < THREE_DIGISTS) {
-      const randomNumber = Random.pickNumberInRange(1, 9);
-      randomUniqueNumberList.add(randomNumber);
-    }
-    console.log(randomUniqueNumberList);
-    this.#answer = randomUniqueNumberList;
+  isAnswer() {
+    return this.#count.strike === COUNT.out;
+  }
+
+  getCount() {
+    return this.#count;
   }
 
   #calculateCount = (number, index) => {
@@ -54,6 +48,16 @@ class BaseBallGame {
     }
     this.#count.ball += 1;
   };
+
+  #createRandomUniqueNumberList() {
+    const randomUniqueNumberList = new Set();
+    while (randomUniqueNumberList.size < THREE_DIGISTS) {
+      const randomNumber = Random.pickNumberInRange(1, 9);
+      randomUniqueNumberList.add(randomNumber);
+    }
+    console.log(randomUniqueNumberList);
+    return randomUniqueNumberList;
+  }
 
   #resetCount() {
     this.#count = { ...COUNT.initialization };
