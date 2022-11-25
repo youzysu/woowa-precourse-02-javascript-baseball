@@ -2,31 +2,36 @@ const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE, OPTION, ERROR_MESSAGE } = require('./libs/const.js');
 const game = require('./libs/game.js');
 const validation = require('./libs/validation.js');
+const ComputerAnswer = require('./Model/ComputerAnswer.js');
 const InputView = require('./View/InputView.js');
 const OutputView = require('./View/OutputView.js');
 
 class App {
+  #computerAnswer;
+
+  constructor() {
+    this.#computerAnswer = new ComputerAnswer();
+  }
+
   play() {
     this.start();
-    this.progress(game.getAnswer());
+    this.progress();
   }
 
   start() {
     OutputView.printMessage(MESSAGE.START);
   }
 
-  progress(computerAnswer) {
+  progress() {
     InputView.readPlayerAnswer((playerAnswer) => {
       if (!validation.checkPlayerAnswer(playerAnswer))
         game.quitWithException(ERROR_MESSAGE.ANSWER);
 
-      const { ballCount, strikeCount } = game.getResult(
-        computerAnswer,
-        playerAnswer
-      );
+      const { ballCount, strikeCount } =
+        this.#computerAnswer.comparePlayerAnswer(playerAnswer);
       game.printResult(ballCount, strikeCount);
 
-      if (strikeCount !== 3) return this.progress(computerAnswer);
+      if (strikeCount !== 3) return this.progress();
 
       return this.end();
     });
@@ -44,7 +49,8 @@ class App {
   }
 
   restart() {
-    this.progress(game.getAnswer());
+    this.#computerAnswer.resetValue();
+    this.progress();
   }
 
   exit() {
