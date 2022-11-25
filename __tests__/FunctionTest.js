@@ -25,17 +25,14 @@ describe("구현 기능 목록 테스트", () => {
     const app = new App();
     expect(app.ballStrikeCounter([1, 2, 3], [1, 2, 3])).toEqual([0, 3]);
   });
-
   test("모두 다른자리 같은숫자일 때", () => {
     const app = new App();
     expect(app.ballStrikeCounter([1, 2, 3], [3, 1, 2])).toEqual([3, 0]);
   });
-
   test("일치하는 숫자가 하나도 없을 때", () => {
     const app = new App();
     expect(app.ballStrikeCounter([1, 2, 3], [4, 5, 6])).toEqual([0, 0]);
   });
-
   test("1스트라이크 1볼인 경우", () => {
     const app = new App();
     expect(app.ballStrikeCounter([1, 2, 3], [1, 3, 5])).toEqual([1, 1]);
@@ -47,7 +44,6 @@ describe("구현 기능 목록 테스트", () => {
     app.gameResult([0, 0]);
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("낫싱"));
   });
-
   test("3스트라이크인 경우", () => {
     const app = new App();
     const logSpy = getLogSpy();
@@ -58,14 +54,12 @@ describe("구현 기능 목록 테스트", () => {
       )
     );
   });
-
   test("3볼인 경우", () => {
     const app = new App();
     const logSpy = getLogSpy();
     app.gameResult([3, 0]);
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("3볼"));
   });
-
   test("2볼 1스트라이크인 경우", () => {
     const app = new App();
     const logSpy = getLogSpy();
