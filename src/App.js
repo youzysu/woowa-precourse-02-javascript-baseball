@@ -29,7 +29,8 @@ class App {
 
       const { ballCount, strikeCount } =
         this.#computerAnswer.comparePlayerAnswer(playerAnswer);
-      game.printResult(ballCount, strikeCount);
+
+      OutputView.printResult(ballCount, strikeCount);
 
       if (strikeCount !== 3) return this.progress();
 
