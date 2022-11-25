@@ -5,9 +5,8 @@ const Validation = require("../Validation");
 const InputView = {
   readBridgeSize(callback) {
     Console.readLine(GAME_SENTENCE.PLAYER_INPUT, (threeDigistsNumber) => {
-      if (Validation.passAllValidationChecks(threeDigistsNumber)) {
-        callback(threeDigistsNumber);
-      }
+      Validation.passAllValidationChecks(threeDigistsNumber);
+      callback(threeDigistsNumber);
     });
   },
 

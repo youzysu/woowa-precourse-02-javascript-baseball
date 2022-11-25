@@ -6,38 +6,41 @@ class BaseBallGame {
    * 정답 숫자
    * @type {Set<number>}
    */
-  answer;
+  #answer;
 
   /**
    * 플레이어 입력 숫자
    * @type {number[]}
    */
-  playerInputValue;
+  #playerInputValue;
 
   /**
    * 볼 스트라이크 개수
    * @type  {{ ball: number, strike: number }}
    */
-  count;
+  #count;
 
   setCount() {
     this.#resetCount();
-    this.playerInputValue.forEach((number, index) => {
-      if (!this.answer.has(number)) return;
-      const answer = [...this.answer];
-      if (answer[index] === number) {
-        return (this.count.strike += 1);
+    this.#playerInputValue.forEach((number, index) => {
+      if (!this.#answer.has(number)) return;
+      if (this.#isStrike({ number, index })) {
+        return (this.#count.strike += 1);
       }
-      this.count.ball += 1;
+      this.#count.ball += 1;
     });
   }
 
+  getCount() {
+    return this.#count;
+  }
+
   setPlayerInputValue(playerInputValue) {
-    this.playerInputValue = playerInputValue.split("").map(Number);
+    this.#playerInputValue = playerInputValue.split("").map(Number);
   }
 
   isAnswer() {
-    return this.count.strike === 3;
+    return this.#count.strike === 3;
   }
 
   createAnswer() {
@@ -47,11 +50,16 @@ class BaseBallGame {
       randomUniqueNumberList.add(randomNumber);
     }
     console.log(randomUniqueNumberList);
-    this.answer = randomUniqueNumberList;
+    this.#answer = randomUniqueNumberList;
   }
 
   #resetCount() {
-    this.count = { ...COUNT.initialization };
+    this.#count = { ...COUNT.initialization };
+  }
+
+  #isStrike({ number, index }) {
+    const answer = [...this.#answer];
+    return answer[index] === number;
   }
 }
 

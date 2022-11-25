@@ -33,11 +33,13 @@ class App {
   }
 
   compareAnswer() {
+    OutputView.printCountResult(this.baseballGame.getCount());
+
     if (this.baseballGame.isAnswer()) {
       OutputView.printGameSuccess();
-      return this.readGameCommand();
+      this.readGameCommand();
+      return;
     }
-    OutputView.printCountResult(this.baseballGame.count);
 
     this.readBridgeSize();
   }
@@ -48,7 +50,8 @@ class App {
 
   actionGameCommand(gameCommand) {
     if (Number(gameCommand) === COMMAND.RESTART) {
-      return this.start();
+      this.start();
+      return;
     }
     Console.close();
   }

@@ -14,7 +14,6 @@ const OutputView = {
   },
 
   printGameSuccess() {
-    Console.print(COUNT.STRIKE(3));
     Console.print(GAME_SENTENCE.END);
   },
 
