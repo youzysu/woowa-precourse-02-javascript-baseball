@@ -22,13 +22,7 @@ class BaseBallGame {
 
   setCount() {
     this.#resetCount();
-    this.#playerInputValue.forEach((number, index) => {
-      if (!this.#answer.has(number)) return;
-      if (this.#isStrike({ number, index })) {
-        return (this.#count.strike += 1);
-      }
-      this.#count.ball += 1;
-    });
+    this.#playerInputValue.forEach(this.#calculateCount);
   }
 
   getCount() {
@@ -52,6 +46,14 @@ class BaseBallGame {
     console.log(randomUniqueNumberList);
     this.#answer = randomUniqueNumberList;
   }
+
+  #calculateCount = (number, index) => {
+    if (!this.#answer.has(number)) return;
+    if (this.#isStrike({ number, index })) {
+      return (this.#count.strike += 1);
+    }
+    this.#count.ball += 1;
+  };
 
   #resetCount() {
     this.#count = { ...COUNT.initialization };
