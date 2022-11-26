@@ -6,7 +6,7 @@ class Validation {
    * @param {string} playerInputValue
    */
   static checkPlayerInputValue(playerInputValue) {
-    if (this.#isCorrectPlayerInputValue(playerInputValue)) {
+    if (!this.#isCorrectPlayerInputValue(playerInputValue)) {
       throw new Error(
         "1부터 9까지 서로 다른 수로 이루어진 3자리의 수를 입력하세요"
       );
@@ -25,10 +25,10 @@ class Validation {
 
   static #isCorrectPlayerInputValue(playerInputValue) {
     return (
-      Number.isNaN(Number(playerInputValue)) ||
-      !this.#isThreeDigits(playerInputValue) ||
-      this.#isIncludesZero(playerInputValue) ||
-      !this.#isUniqueNumbers(playerInputValue)
+      !Number.isNaN(Number(playerInputValue)) &&
+      this.#isThreeDigits(playerInputValue) &&
+      !this.#isIncludesZero(playerInputValue) &&
+      this.#isUniqueNumbers(playerInputValue)
     );
   }
 

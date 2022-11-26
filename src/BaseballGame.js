@@ -49,11 +49,20 @@ class BaseBallGame {
   #createRandomUniqueNumberList() {
     const randomUniqueNumberList = new Set();
     while (randomUniqueNumberList.size < NUMBER_DIGITS) {
-      const randomNumber = Random.pickNumberInRange(1, 9);
+      const randomNumber = this.#randomNumberGenerate();
       randomUniqueNumberList.add(randomNumber);
     }
     console.log(randomUniqueNumberList);
     return randomUniqueNumberList;
+  }
+
+  #randomNumberGenerate() {
+    const RANDOM_LOWER_INCLUSIVE = 1;
+    const RANDOM_UPPER_INCLUSIVE = 9;
+    return Random.pickNumberInRange(
+      RANDOM_LOWER_INCLUSIVE,
+      RANDOM_UPPER_INCLUSIVE
+    );
   }
 
   #resetCount() {
