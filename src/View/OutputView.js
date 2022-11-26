@@ -6,7 +6,7 @@ class OutputView {
     Console.print(message);
   }
 
-  static printResult(ballCount, strikeCount) {
+  static printResult({ ballCount, strikeCount }) {
     if (ballCount === 0 && strikeCount === 0) {
       Console.print(OUTPUT.NOTHING);
       return;

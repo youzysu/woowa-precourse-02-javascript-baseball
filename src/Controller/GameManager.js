@@ -3,7 +3,6 @@ const InputView = require('../View/InputView');
 const Validator = require('../Model/Validator');
 const Quit = require('../libs/Quit');
 const { MESSAGE, OPTION } = require('../libs/const');
-const { playerAnswer } = require('../Model/Validator');
 
 class GameManager {
   #computerAnswer;
@@ -22,10 +21,9 @@ class GameManager {
     InputView.readPlayerAnswer((playerAnswer) => {
       Validator.playerAnswer(playerAnswer);
 
-      const { ballCount, strikeCount } =
-        this.#computerAnswer.comparePlayerAnswer(playerAnswer);
-
-      OutputView.printResult(ballCount, strikeCount);
+      OutputView.printResult(
+        this.#computerAnswer.comparePlayerAnswer(playerAnswer)
+      );
 
       this.actionAboutPlayerAnswer(playerAnswer);
     });
