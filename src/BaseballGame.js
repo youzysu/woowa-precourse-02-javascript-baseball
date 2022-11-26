@@ -1,5 +1,5 @@
 const { Random } = require("@woowacourse/mission-utils");
-const { THREE_DIGISTS, COUNT } = require("./constants");
+const { COUNT, NUMBER_DIGITS } = require("./constants/game");
 
 class BaseBallGame {
   /**
@@ -51,7 +51,7 @@ class BaseBallGame {
 
   #createRandomUniqueNumberList() {
     const randomUniqueNumberList = new Set();
-    while (randomUniqueNumberList.size < THREE_DIGISTS) {
+    while (randomUniqueNumberList.size < NUMBER_DIGITS) {
       const randomNumber = Random.pickNumberInRange(1, 9);
       randomUniqueNumberList.add(randomNumber);
     }

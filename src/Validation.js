@@ -1,4 +1,4 @@
-const { THREE_DIGISTS, COMMAND } = require("./constants");
+const { COMMAND, NUMBER_DIGITS } = require("./constants/game");
 
 class Validation {
   /**
@@ -33,11 +33,11 @@ class Validation {
   }
 
   static #isCorrectGameCommand(gameCommand) {
-    return gameCommand === COMMAND.RESTART || gameCommand === COMMAND.END;
+    return gameCommand === COMMAND.restart || gameCommand === COMMAND.quit;
   }
 
   static #isThreeDigits(string) {
-    return string.length === THREE_DIGISTS;
+    return string.length === NUMBER_DIGITS;
   }
   static #isIncludesZero(string) {
     return string.includes("0");
@@ -45,7 +45,7 @@ class Validation {
   static #isUniqueNumbers(string) {
     const numberList = string.split("");
     const uniqueNumberList = new Set(numberList);
-    return uniqueNumberList.size === THREE_DIGISTS;
+    return uniqueNumberList.size === NUMBER_DIGITS;
   }
 }
 

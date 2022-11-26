@@ -1,17 +1,17 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { GAME_SENTENCE } = require("../constants");
+const { INPUT_MESSAGE } = require("../constants/messages");
 const Validation = require("../Validation");
 
 const InputView = {
   readBridgeSize(callback) {
-    Console.readLine(GAME_SENTENCE.PLAYER_INPUT, (threeDigistsNumber) => {
+    Console.readLine(INPUT_MESSAGE.playerInput, (threeDigistsNumber) => {
       Validation.checkPlayerInputValue(threeDigistsNumber);
       callback(threeDigistsNumber);
     });
   },
 
   readGameCommand(callback) {
-    Console.readLine(GAME_SENTENCE.RESTART, (gameCommand) => {
+    Console.readLine(INPUT_MESSAGE.restart, (gameCommand) => {
       Validation.checkGameCommnad(gameCommand);
       callback(gameCommand);
     });

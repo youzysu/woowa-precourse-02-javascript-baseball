@@ -1,20 +1,20 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { COUNT, GAME_SENTENCE } = require("../constants");
+const { OUTPUT_MESSAGE } = require("../constants/messages");
 
 const OutputView = {
   printStart() {
-    Console.print(GAME_SENTENCE.START);
+    Console.print(OUTPUT_MESSAGE.start);
   },
 
   printCountResult({ ball, strike }) {
     if (this.isNothing({ ball, strike })) {
-      return Console.print(COUNT.NOTHING);
+      return Console.print(OUTPUT_MESSAGE.nothing);
     }
-    Console.print(`${COUNT.BALL(ball)} ${COUNT.STRIKE(strike)}`);
+    Console.print(OUTPUT_MESSAGE.countResult({ ball, strike }));
   },
 
   printGameSuccess() {
-    Console.print(GAME_SENTENCE.END);
+    Console.print(OUTPUT_MESSAGE.end);
   },
 
   isNothing({ ball, strike }) {

@@ -1,6 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const BaseballGame = require("./BaseballGame");
-const { COMMAND } = require("./constants");
+const { COMMAND } = require("./constants/game");
 
 const InputView = require("./view/InputView");
 const OutputView = require("./view/OutputView");
@@ -49,10 +49,14 @@ class App {
   }
 
   actionGameCommand(gameCommand) {
-    if (Number(gameCommand) === COMMAND.RESTART) {
+    if (Number(gameCommand) === COMMAND.restart) {
       this.start();
       return;
     }
+    this.quit();
+  }
+
+  quit() {
     Console.close();
   }
 }
