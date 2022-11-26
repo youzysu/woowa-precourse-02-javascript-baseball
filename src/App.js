@@ -16,7 +16,7 @@ class App {
   }
 
   start() {
-    this.baseballGame.setAnswer();
+    this.baseballGame.setAnswerNumbers();
 
     this.readBridgeSize();
   }
@@ -26,7 +26,7 @@ class App {
   }
 
   actionBrridgeSize(threeDigistsNumber) {
-    this.baseballGame.setPlayerInputValue(threeDigistsNumber);
+    this.baseballGame.setPlayerNumbers(threeDigistsNumber);
     this.baseballGame.setCount();
 
     this.compareAnswer();

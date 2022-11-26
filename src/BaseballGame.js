@@ -6,13 +6,13 @@ class BaseBallGame {
    * 정답 숫자
    * @type {Set<number>}
    */
-  #answer;
+  #answerNumbers;
 
   /**
    * 플레이어 입력 숫자
    * @type {number[]}
    */
-  #playerInputValue;
+  #playerNumbers;
 
   /**
    * 볼 스트라이크 개수
@@ -20,17 +20,17 @@ class BaseBallGame {
    */
   #count;
 
-  setAnswer() {
-    this.#answer = this.#createRandomUniqueNumberList();
+  setAnswerNumbers() {
+    this.#answerNumbers = this.#createRandomUniqueNumberList();
   }
 
-  setPlayerInputValue(playerInputValue) {
-    this.#playerInputValue = playerInputValue.split("").map(Number);
+  setPlayerNumbers(playerNumbers) {
+    this.#playerNumbers = playerNumbers.split("").map(Number);
   }
 
   setCount() {
     this.#resetCount();
-    this.#playerInputValue.forEach(this.#calculateCount);
+    this.#playerNumbers.forEach(this.#calculateCount);
   }
 
   isAnswer() {
@@ -41,9 +41,9 @@ class BaseBallGame {
     return this.#count;
   }
 
-  #calculateCount = (number, index) => {
-    if (!this.#answer.has(number)) return;
-    if (this.#isStrike({ number, index })) {
+  #calculateCount = (palyerNumber, palyerNumberIndex) => {
+    if (!this.#answerNumbers.has(palyerNumber)) return;
+    if (this.#isStrike({ palyerNumber, palyerNumberIndex })) {
       return (this.#count.strike += 1);
     }
     this.#count.ball += 1;
@@ -63,9 +63,9 @@ class BaseBallGame {
     this.#count = { ...COUNT.initialization };
   }
 
-  #isStrike({ number, index }) {
-    const answer = [...this.#answer];
-    return answer[index] === number;
+  #isStrike({ palyerNumber, palyerNumberIndex }) {
+    const answerNumbers = [...this.#answerNumbers];
+    return answerNumbers[palyerNumberIndex] === palyerNumber;
   }
 }
 

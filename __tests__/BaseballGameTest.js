@@ -26,11 +26,11 @@ describe("BaseBallGame Class test", () => {
 
     mockRandoms(randoms);
     const baseballGame = new BaseBallGame();
-    baseballGame.setAnswer();
+    baseballGame.setAnswerNumbers();
 
     playerInputValues.forEach((playerInputValue, index) => {
       const count = counts[index];
-      baseballGame.setPlayerInputValue(playerInputValue);
+      baseballGame.setPlayerNumbers(playerInputValue);
       baseballGame.setCount();
 
       expect(baseballGame.getCount()).toEqual(count);
@@ -42,8 +42,8 @@ describe("BaseBallGame Class test", () => {
     mockRandoms(randoms);
 
     const baseballGame = new BaseBallGame();
-    baseballGame.setAnswer();
-    baseballGame.setPlayerInputValue("123");
+    baseballGame.setAnswerNumbers();
+    baseballGame.setPlayerNumbers("123");
     baseballGame.setCount();
 
     expect(baseballGame.isAnswer()).toBeTruthy();
