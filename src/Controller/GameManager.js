@@ -26,20 +26,28 @@ class GameManager {
 
       OutputView.printResult(ballCount, strikeCount);
 
-      if (strikeCount !== 3) return this.play();
-
-      return this.end();
+      this.actionAboutPlayerAnswer(strikeCount);
     });
+  }
+
+  actionAboutPlayerAnswer(strikeCount) {
+    if (strikeCount !== 3) return this.play();
+
+    return this.end();
   }
 
   end() {
     InputView.readCommand((option) => {
       Validator.playerOption(option);
 
-      if (option === OPTION.RESTART) return this.restart();
-
-      return Quit.game();
+      this.actionAboutCommand(option);
     });
+  }
+
+  actionAboutCommand(option) {
+    if (option === OPTION.RESTART) return this.restart();
+
+    return Quit.game();
   }
 
   restart() {
