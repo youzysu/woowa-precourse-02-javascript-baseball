@@ -182,6 +182,7 @@
   - ComputerAnswer 클래스에서 컴퓨터의 정답 관련 필드와 메서드를 만든다.
     - setValue, comparePlayerAnswer, resetValue
   - Validator 클래스에서 유효성 검사를 진행한다.
+  - Validator 클래스에서 유효성 검사가 실패할 경우 애플리케이션을 종료한다.
 - [ ] refactor: Controller를 담당하는 클래스(또는 객체) 분리하기
 - [x] refactor: 게임 종료를 담당하는 객체를 만들어 분리하기
 

@@ -24,8 +24,7 @@ class App {
 
   progress() {
     InputView.readPlayerAnswer((playerAnswer) => {
-      if (!Validator.playerAnswer(playerAnswer))
-        Quit.withException(ERROR_MESSAGE.ANSWER);
+      Validator.playerAnswer(playerAnswer);
 
       const { ballCount, strikeCount } =
         this.#computerAnswer.comparePlayerAnswer(playerAnswer);
@@ -40,8 +39,7 @@ class App {
 
   end() {
     InputView.readCommand((option) => {
-      if (!Validator.playerOption(option))
-        Quit.withException(ERROR_MESSAGE.OPTION);
+      Validator.playerOption(option);
 
       if (option === OPTION.RESTART) return this.restart();
 
