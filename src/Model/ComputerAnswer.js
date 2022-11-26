@@ -15,6 +15,8 @@ class ComputerAnswer {
     }
 
     this.#value = numberArr.join('');
+
+    console.log(this.#value);
   }
 
   resetValue() {
@@ -36,6 +38,10 @@ class ComputerAnswer {
     });
 
     return { ballCount, strikeCount };
+  }
+
+  isThreeStrike(playerAnswer) {
+    return this.#value === playerAnswer;
   }
 }
 

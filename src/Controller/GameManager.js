@@ -3,6 +3,7 @@ const InputView = require('../View/InputView');
 const Validator = require('../Model/Validator');
 const Quit = require('../libs/Quit');
 const { MESSAGE, OPTION } = require('../libs/const');
+const { playerAnswer } = require('../Model/Validator');
 
 class GameManager {
   #computerAnswer;
@@ -26,14 +27,14 @@ class GameManager {
 
       OutputView.printResult(ballCount, strikeCount);
 
-      this.actionAboutPlayerAnswer(strikeCount);
+      this.actionAboutPlayerAnswer(playerAnswer);
     });
   }
 
-  actionAboutPlayerAnswer(strikeCount) {
-    if (strikeCount !== 3) return this.play();
+  actionAboutPlayerAnswer(playerAnswer) {
+    if (this.#computerAnswer.isThreeStrike(playerAnswer)) return this.end();
 
-    return this.end();
+    return this.play();
   }
 
   end() {
