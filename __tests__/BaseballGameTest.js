@@ -31,7 +31,6 @@ describe("BaseBallGame Class test", () => {
     playerInputValues.forEach((playerInputValue, index) => {
       const count = counts[index];
       baseballGame.setPlayerNumbers(playerInputValue);
-      baseballGame.setCount();
 
       expect(baseballGame.getCount()).toEqual(count);
     });
@@ -44,7 +43,7 @@ describe("BaseBallGame Class test", () => {
     const baseballGame = new BaseBallGame();
     baseballGame.setAnswerNumbers();
     baseballGame.setPlayerNumbers("123");
-    baseballGame.setCount();
+    baseballGame.getCount();
 
     expect(baseballGame.isAnswer()).toBeTruthy();
   });

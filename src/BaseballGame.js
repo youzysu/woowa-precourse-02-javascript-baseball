@@ -28,16 +28,13 @@ class BaseBallGame {
     this.#playerNumbers = playerNumbers.split("").map(Number);
   }
 
-  setCount() {
-    this.#resetCount();
-    this.#playerNumbers.forEach(this.#calculateCount);
-  }
-
   isAnswer() {
     return this.#count.strike === COUNT.out;
   }
 
   getCount() {
+    this.#resetCount();
+    this.#playerNumbers.forEach(this.#calculateCount);
     return this.#count;
   }
 
