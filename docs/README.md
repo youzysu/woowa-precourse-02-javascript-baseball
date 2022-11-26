@@ -21,8 +21,8 @@
 
 ## 🔍 기능 구현 목록
 
-- [] App
-  - [] play method를 통해 프로그램을 실행한다.
+- [x] App
+  - [x] play method를 통해 프로그램을 실행한다.
 - [x] GameController
   - [x] 전반적인 게임 로직을 구현한다.
 - [x] InputView
