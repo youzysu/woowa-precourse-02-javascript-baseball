@@ -9,15 +9,15 @@ class GameManager {
 
   constructor(compuerAnswer) {
     this.#computerAnswer = compuerAnswer;
-    this.start();
+    this.#start();
   }
 
-  start() {
+  #start() {
     OutputView.printMessage(MESSAGE.START);
-    this.play();
+    this.#play();
   }
 
-  play() {
+  #play() {
     InputView.readPlayerAnswer((playerAnswer) => {
       Validator.playerAnswer(playerAnswer);
 
@@ -25,33 +25,33 @@ class GameManager {
         this.#computerAnswer.comparePlayerAnswer(playerAnswer)
       );
 
-      this.actionAboutPlayerAnswer(playerAnswer);
+      this.#actionAboutPlayerAnswer(playerAnswer);
     });
   }
 
-  actionAboutPlayerAnswer(playerAnswer) {
-    if (this.#computerAnswer.isThreeStrike(playerAnswer)) return this.end();
+  #actionAboutPlayerAnswer(playerAnswer) {
+    if (this.#computerAnswer.isThreeStrike(playerAnswer)) return this.#end();
 
-    return this.play();
+    return this.#play();
   }
 
-  end() {
+  #end() {
     InputView.readCommand((option) => {
       Validator.playerOption(option);
 
-      this.actionAboutCommand(option);
+      this.#actionAboutCommand(option);
     });
   }
 
-  actionAboutCommand(option) {
-    if (option === OPTION.RESTART) return this.restart();
+  #actionAboutCommand(option) {
+    if (option === OPTION.RESTART) return this.#restart();
 
     return Quit.game();
   }
 
-  restart() {
+  #restart() {
     this.#computerAnswer.resetValue();
-    this.play();
+    this.#play();
   }
 }
 
