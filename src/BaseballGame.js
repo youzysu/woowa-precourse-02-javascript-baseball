@@ -34,17 +34,17 @@ class BaseBallGame {
 
   getCount() {
     this.#resetCount();
-    this.#playerNumbers.forEach(this.#calculateCount);
+    this.#playerNumbers.forEach(this.#calculateCount.bind(this));
     return this.#count;
   }
 
-  #calculateCount = (palyerNumber, palyerNumberIndex) => {
+  #calculateCount(palyerNumber, palyerNumberIndex) {
     if (!this.#answerNumbers.has(palyerNumber)) return;
     if (this.#isStrike({ palyerNumber, palyerNumberIndex })) {
       return (this.#count.strike += 1);
     }
     this.#count.ball += 1;
-  };
+  }
 
   #createRandomUniqueNumberList() {
     const randomUniqueNumberList = new Set();
