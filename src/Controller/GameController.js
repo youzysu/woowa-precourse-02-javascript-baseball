@@ -3,7 +3,7 @@ const Utils = require('../Util/Utils');
 const InputView = require('../View/InputView');
 const OutputView = require('../View/OutputView');
 const Validator = require('../Model/Validator');
-const { OPTION } = require('../Util/Constants');
+const { OPTION, NUMBER } = require('../Util/Constants');
 
 class GameController {
   #computer;
@@ -33,7 +33,7 @@ class GameController {
   }
 
   showNext(trial) {
-    if (trial.strike === 3) {
+    if (trial.strike === NUMBER.COUNT) {
       OutputView.printSuccess();
       return this.requestRetry();
     }
@@ -50,3 +50,4 @@ class GameController {
 }
 
 module.exports = GameController;
+

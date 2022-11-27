@@ -1,11 +1,12 @@
 const { Random } = require('@woowacourse/mission-utils');
+const { NUMBER } = require('../Util/Constants');
 
 class Computer {
   #correctNumbers;
 
   setCorrectNumbers() {
     const correctNumbers = [];
-    while (correctNumbers.length < 3) {
+    while (correctNumbers.length < NUMBER.COUNT) {
       const number = Random.pickNumberInRange(1, 9);
       if (!correctNumbers.includes(number)) correctNumbers.push(number);
     }

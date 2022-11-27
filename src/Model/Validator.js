@@ -1,4 +1,4 @@
-const { ERROR, OPTION } = require('../Util/Constants');
+const { ERROR, OPTION, NUMBER } = require('../Util/Constants');
 
 const Validator = {
   validateNumber(userInput) {
@@ -16,7 +16,7 @@ const Validator = {
   },
 
   validateLength(userInput) {
-    if (userInput.length !== 3) {
+    if (userInput.length !== NUMBER.COUNT) {
       throw new Error(ERROR.LENGTH);
     }
   },
@@ -36,3 +36,4 @@ const Validator = {
 };
 
 module.exports = Validator;
+
