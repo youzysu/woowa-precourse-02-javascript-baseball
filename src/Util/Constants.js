@@ -6,6 +6,7 @@ const OPTION = {
 const NUMBER = {
   COUNT: 3,
 };
+
 const MESSAGE = {
   START: '숫자 야구 게임을 시작합니다.',
   TRIAL: '숫자를 입력해주세요 : ',
@@ -23,7 +24,7 @@ const RESULT = {
 
 const ERROR = {
   VALUE: '유효하지 않은 값을 입력하여 게임을 종료합니다.',
-  LENGTH: '3자리 숫자가 아닌 값을 입력하여 게임을 종료합니다.',
+  LENGTH: `${NUMBER.COUNT}자리 숫자가 아닌 값을 입력하여 게임을 종료합니다.`,
   DUPLICATE: '중복된 숫자를 입력하여 게임을 종료합니다.',
   OPTION: '유효하지 않은 옵션을 선택하여 게임을 종료합니다.',
 };
