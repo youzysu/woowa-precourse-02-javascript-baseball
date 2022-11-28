@@ -6,11 +6,11 @@ const OutputView = {
     Console.print(MESSAGE.START);
   },
 
-  printResult(trial) {
-    const strikeResult = trial.strike ? trial.strike + RESULT.STRIKE : '';
-    const ballResult = trial.ball ? trial.ball + RESULT.BALL + RESULT.BLANK : '';
+  printResult({ strike, ball }) {
+    const strikeResult = strike ? strike + RESULT.STRIKE : '';
+    const ballResult = ball ? ball + RESULT.BALL + RESULT.BLANK : '';
 
-    if (trial.strike || trial.ball) {
+    if (strike || ball) {
       return Console.print(ballResult + strikeResult);
     }
     Console.print(RESULT.NOTHING);
@@ -22,3 +22,4 @@ const OutputView = {
 };
 
 module.exports = OutputView;
+
