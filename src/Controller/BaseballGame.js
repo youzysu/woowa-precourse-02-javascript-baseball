@@ -47,7 +47,7 @@ class BaseballGame {
   requestRetry() {
     InputView.readCommand((userInput) => {
       Validator.validateOption(userInput);
-      if (userInput === OPTION.RESTART) return this.start();
+      if (userInput === OPTION.RESTART) return this.setGameNumber();
       if (userInput === OPTION.END) return this.end();
     });
   }
