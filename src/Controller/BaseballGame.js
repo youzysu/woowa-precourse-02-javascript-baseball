@@ -5,7 +5,7 @@ const OutputView = require('../View/OutputView');
 const Validator = require('../Model/Validator');
 const { OPTION, NUMBER } = require('../Util/Constants');
 
-class GameController {
+class BaseballGame {
   #computer;
 
   constructor(computer) {
@@ -14,6 +14,10 @@ class GameController {
 
   start() {
     OutputView.printStart();
+    this.setGameNumber();
+  }
+
+  setGameNumber() {
     this.#computer.setCorrectNumbers();
     this.requestNumber();
   }
@@ -53,5 +57,5 @@ class GameController {
   }
 }
 
-module.exports = GameController;
+module.exports = BaseballGame;
 

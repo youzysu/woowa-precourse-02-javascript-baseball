@@ -1,17 +1,17 @@
-const GameController = require('./Controller/GameController');
+const BaseballGame = require('./Controller/BaseballGame');
 const Computer = require('./Model/Computer');
 
 class App {
-  #gameController;
+  #baseballGame;
   #computer;
 
   constructor() {
     this.#computer = new Computer();
-    this.#gameController = new GameController(this.#computer);
+    this.#baseballGame = new BaseballGame(this.#computer);
   }
 
   play() {
-    this.#gameController.start();
+    this.#baseballGame.start();
   }
 }
 
