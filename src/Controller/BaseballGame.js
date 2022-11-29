@@ -37,8 +37,8 @@ class BaseballGame {
     this.showNext(trial);
   }
 
-  showNext(trial) {
-    if (trial.strike === NUMBER.COUNT) {
+  showNext({ strike }) {
+    if (strike === NUMBER.DIGITS) {
       OutputView.printSuccess();
       return this.requestRetry();
     }
