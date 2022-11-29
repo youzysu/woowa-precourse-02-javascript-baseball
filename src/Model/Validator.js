@@ -16,7 +16,7 @@ const Validator = {
   },
 
   validateLength(userInput) {
-    if (userInput.length !== NUMBER.COUNT) {
+    if (userInput.length !== NUMBER.DIGITS) {
       throw new Error(ERROR.LENGTH);
     }
   },
