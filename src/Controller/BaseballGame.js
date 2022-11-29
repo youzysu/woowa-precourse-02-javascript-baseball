@@ -4,12 +4,13 @@ const InputView = require('../View/InputView');
 const OutputView = require('../View/OutputView');
 const Validator = require('../Model/Validator');
 const { OPTION, NUMBER } = require('../Util/Constants');
+const Computer = require('../Model/Computer');
 
 class BaseballGame {
   #computer;
 
   constructor(computer) {
-    this.#computer = computer;
+    this.#computer = new Computer();
   }
 
   start() {

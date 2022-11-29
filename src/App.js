@@ -6,7 +6,6 @@ class App {
   #computer;
 
   constructor() {
-    this.#computer = new Computer();
     this.#baseballGame = new BaseballGame(this.#computer);
   }
 
